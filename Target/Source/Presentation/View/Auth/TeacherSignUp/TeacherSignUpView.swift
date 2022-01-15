@@ -59,6 +59,7 @@ struct TeacherSignUpView: View {
             
 
         }
+        .navigate(to: ContentView(), when: $viewModel.isSuccess)
         .sheet(isPresented: $imagePickerPresenting, content: {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.profileImage)
         })

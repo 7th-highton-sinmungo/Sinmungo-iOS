@@ -38,7 +38,15 @@ struct StudentSignUpView: View {
             VStack(spacing: 40) {
                 VStack(spacing: 30) {
                     AuthTextField(title: "이름", input: $viewModel.name)
-                    AuthTextField(title: "학번", input: $viewModel.gcn)
+                    HStack {
+                        
+                        gradeButton(grade: $viewModel.grade)
+                        Spacer()
+                        classButton(class: $viewModel.class)
+                        Spacer()
+                        numberButton(num: $viewModel.number)
+                        
+                    }
                     AuthTextField(title: "아이디", input: $viewModel.id)
                     AuthTextField(title: "비밀번호", input: $viewModel.password)
                 }
@@ -60,6 +68,7 @@ struct StudentSignUpView: View {
             
 
         }
+        .navigate(to: ContentView(), when: $viewModel.isSuccess)
         .sheet(isPresented: $imagePickerPresenting, content: {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.profileImage)
         })
@@ -82,5 +91,101 @@ struct StudentSignUpView: View {
 struct StudentSignUpView_Previews: PreviewProvider {
     static var previews: some View {
         StudentSignUpView(isLogin: .constant(false))
+    }
+}
+
+struct gradeButton: View {
+    @Binding var grade: Int
+
+    var body: some View {
+        Menu{
+            ForEach(1..<4) { index in
+                Button {
+                    grade = index
+                } label: {
+                    Text("\(index)학년")
+                }
+
+            }
+        } label: {
+            VStack(alignment: .leading) {
+                Text("학년")
+                    .foregroundColor(.black)
+                
+                Text("\(grade)학년")
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(SinmungoAsset.Assets.sinmungoMain.color), lineWidth: 1)
+                    )
+                
+            }
+            
+            
+        }
+    }
+}
+
+struct classButton: View {
+    @Binding var `class`: Int
+    
+    var body: some View {
+        Menu{
+            ForEach(1..<9) { index in
+                Button {
+                    `class` = index
+                } label: {
+                    Text("\(index)반")
+                }
+
+            }
+        } label: {
+            VStack(alignment: .leading) {
+                Text("반")
+                    .foregroundColor(.black)
+                Text("\(`class`)반")
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(SinmungoAsset.Assets.sinmungoMain.color), lineWidth: 1)
+                    )
+            }
+            
+            
+        }
+    }
+}
+
+struct numberButton: View {
+    @Binding var num: Int
+    
+    var body: some View {
+        Menu{
+            ForEach(1..<21) { index in
+                Button {
+                    num = index
+                } label: {
+                    Text("\(index)번")
+                }
+
+            }
+        } label: {
+            VStack(alignment: .leading) {
+                Text("반")
+                    .foregroundColor(.black)
+                Text("\(num)반")
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(SinmungoAsset.Assets.sinmungoMain.color), lineWidth: 1)
+                    )
+            }
+        }
     }
 }

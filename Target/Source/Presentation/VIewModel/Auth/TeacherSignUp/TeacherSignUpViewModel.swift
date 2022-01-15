@@ -9,23 +9,17 @@
 import Combine
 import UIKit
 
-final class TeacherSignUpViewModel: ObservableObject{
+final class TeacherSignUpViewModel: BaseViewModel{
     // MARK: - Properties
     @Published var name = ""
     @Published var id = ""
     @Published var password = ""
     @Published var profileImage: [UploadRequest] = []
+    @Published var isSuccess = false
     
-    private var bag = Set<AnyCancellable>()
-    
-    // MARK: - Init
-    init(){
-        
-    }
-    
-    deinit {
-        bag.removeAll()
-    }
+  
+    private let imageRemote = ImageRemote()
+    private let teacherRemote = TeacherRemote()
     
     // MARK: - Input
     enum Input{
@@ -45,13 +39,17 @@ final class TeacherSignUpViewModel: ObservableObject{
         }
     }
     
-    func bindInput(){
-        
-    }
-    
-    
-    // MARK: - Output
-    func bindOutput(){
-        
+    private func teacherSignUp(){
+        addCancellable(imageRemote.postUploadProfileImage([.init(type: .JPEG,
+                                                                 name: "",
+                                                                 image: profileImage.first?.image ?? .init())]))
+        { [weak self] url in
+            self?.addCancellable(self!.teacherRemote.postRegister(.init(id: self?.id ?? "",
+                                                         password: self?.password ?? "",
+                                                         name: self?.name ?? "",
+                                                         profileImageUrl: url)), onReceiveValue: { _ in
+                self?.isSuccess = true
+            })
+        }
     }
 }

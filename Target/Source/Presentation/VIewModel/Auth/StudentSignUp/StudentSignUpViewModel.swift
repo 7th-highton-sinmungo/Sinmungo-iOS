@@ -9,24 +9,23 @@
 import Combine
 import UIKit
 
-final class StudentSignUpViewModel: ObservableObject {
+final class StudentSignUpViewModel: BaseViewModel {
     // MARK: - Properties
     @Published var name = ""
-    @Published var gcn = ""
     @Published var id = ""
     @Published var password = ""
+    @Published var grade = 1
+    @Published var `class` = 1
+    @Published var number = 1
     @Published var profileImage: [UploadRequest] = []
-    
-    private var bag = Set<AnyCancellable>()
-    // MARK: - Init
-    init(){
-        bindInput()
-        bindOutput()
-    }
+    @Published var isSuccess = false
     
     deinit {
         bag.removeAll()
     }
+    
+    private let studentRemote = StudentRemote()
+    private let imageRemote = ImageRemote()
     
     // MARK: - Input
     enum Input{
@@ -35,7 +34,9 @@ final class StudentSignUpViewModel: ObservableObject {
     
     func reset(){
         self.name = ""
-        self.gcn = ""
+        self.grade = 1
+        self.class = 1
+        self.number = 1
         self.id = ""
         self.password = ""
         self.profileImage = []
@@ -44,15 +45,26 @@ final class StudentSignUpViewModel: ObservableObject {
     func apply(_ input: Input) {
         switch input{
         case .signUpButtonDidTap:
-            break
+            studentSignUp()
         }
     }
     
-    private func bindInput(){
-        
+    private func studentSignUp(){
+        addCancellable(imageRemote.postUploadProfileImage([.init(type: .JPEG,
+                                                                 name: "",
+                                                                 image: profileImage.first?.image ?? .init())]))
+        { [weak self] url in
+            self?.addCancellable(self!.studentRemote.postLogin(.init(id: self?.id ?? "",
+                                                         password: self?.password ?? "",
+                                                         name: self?.name ?? "",
+                                                         grade: self?.grade ?? 1,
+                                                         classNum: self?.class ?? 1,
+                                                         number: self?.number ?? 1,
+                                                                     profileImageUrl: url)), onReceiveValue: { _ in
+                self?.isSuccess = true
+            })
+        }
+
     }
-    // MARK: - Output
-    private func bindOutput(){
-        
-    }
+    
 }

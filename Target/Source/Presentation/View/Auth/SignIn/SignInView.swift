@@ -48,6 +48,7 @@ struct SignInView: View {
 
             Spacer()
         }
+        .navigate(to: ContentView(), when: $viewModel.isSuccess)
         .configureBackbutton(mode: mode)
         .onDisappear(perform: {
             viewModel.reset()
