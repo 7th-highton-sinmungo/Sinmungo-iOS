@@ -23,38 +23,44 @@ struct CreatePostView: View {
                 Image(systemName: "chevron.right")
             }
             
-            ScrollView(.horizontal, showsIndicators: false) {
+            if viewModel.images.count <= 0 {
                 VStack {
-                    if viewModel.images.count <= 0 {
-                        VStack {
-                            Image(systemName: "exclamationmark.square")
-                            Text("이미지를 선택해주세요.")
+                    Image(systemName: "exclamationmark.square")
+                    Text("이미지를 선택해주세요.")
+                }
+                .foregroundColor(.secondary)
+                .frame(height: 220, alignment: .center)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom)
+            }
+            else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.images, id: \.self) { image in
+                            Image(uiImage: image.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 300, height: 220, alignment: .center)
+                                .overlay(
+                                    DeleteButtonOveray(image: image, images: $viewModel.images)
+                                )
+                                .clipped()
                         }
-                        .foregroundColor(.secondary)
-                        .frame(width: 300, height: 220, alignment: .center)
-                    }
-                    else {
-                        HStack {
-                            ForEach(viewModel.images, id: \.self) { image in
-                                Image(uiImage: image.image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 300, height: 220, alignment: .center)
-                                    .overlay(
-                                        DeleteButtonOveray(image: image, images: $viewModel.images)
-                                    )
-                                    .clipped()
-                            }
-                            .padding(.trailing, 8)
-                        }
+                        .padding(.trailing, 8)
                     }
                 }
+                .padding(.bottom)
             }
-            .padding(.bottom)
             
             VStack(alignment: .leading) {
                 Text("메뉴명")
                 TextField("메뉴이름을 작성해주세요.", text: $viewModel.menuName)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke()
+                            .foregroundColor(.accentColor)
+                    )
             }
             
             Spacer()
