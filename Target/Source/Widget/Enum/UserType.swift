@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UserType: Int {
-    case STUDENT = 0
-    case TEACHER = 1
+enum UserType: Int, Codable {
+    case TEACHER = 0
+    case STUDENT = 1
 }

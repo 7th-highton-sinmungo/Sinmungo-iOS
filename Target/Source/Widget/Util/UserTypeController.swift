@@ -16,7 +16,7 @@ class UserTypeController { // 0: student, 1: teacher
     }
     
     func getUserType() -> UserType {
-        return UserType(rawValue: preferences.value(forKey: "userType") as? Int ?? 0) ?? UserType.STUDENT
+        return UserType(rawValue: preferences.value(forKey: "userType") as? Int ?? 1) ?? UserType.STUDENT
     }
     
     func deleteUserType() {

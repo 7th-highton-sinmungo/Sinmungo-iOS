@@ -11,8 +11,12 @@ import Combine
 class UserRemote: BaseRemote<UserAPI> {
     func postLogin(_ request: LoginRequest) -> AnyPublisher<String, Error> {
         return self.request(.postLogin(request))
-            .map(TokenResponse.self, using: decoder)
-            .map { $0.accessToken }
+            .map(LoginResponse.self, using: decoder)
+            .map { response in
+                TokenController.getInstance().login(token: response.accessToken)
+                UserTypeController.getInstance().setUserType(userType: response.authority)
+                return response.accessToken
+            }
             .eraseToAnyPublisher()
     }
     
