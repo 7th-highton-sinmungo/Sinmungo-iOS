@@ -21,7 +21,7 @@ struct PostView: View {
     var body: some View {
         VStack(spacing: 0) {
             ImageView(images: post.images)
-                .frame(height: 210)
+                .frame(height: 210, alignment: .center)
             
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
