@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MonthlyChosenPost: View {
+struct MonthlyChosenPostView: View {
     @ObservedObject var viewModel = MonthlyChosenPostViewModel()
     
     var body: some View {
@@ -57,6 +57,6 @@ struct MonthlyChosenPost: View {
 
 struct MonthlyChosenPost_Previews: PreviewProvider {
     static var previews: some View {
-        MonthlyChosenPost()
+        MonthlyChosenPostView()
     }
 }

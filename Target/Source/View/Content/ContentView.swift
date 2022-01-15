@@ -19,7 +19,7 @@ struct ContentView: View {
                 }
                 .tag(0)
             
-            MonthlyChosenPost()
+            MonthlyChosenPostView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("월별 조회")
