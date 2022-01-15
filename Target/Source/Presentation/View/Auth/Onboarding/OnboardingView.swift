@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @Binding var isLogin: Bool
     @State var isSignInActive = false
     @State var isStudentActive = false
     @State var isTeacherActive = false
@@ -21,7 +22,7 @@ struct OnboardingView: View {
                 Spacer()
                 VStack(spacing: 20){
                     NavigationLink(isActive: $isSignInActive) {
-                        SignInView()
+                        SignInView(isLogin: $isLogin)
                     } label: {
                         Text("로그인")
                             .frame(width: UIFrame.width - 48, height: 62)
@@ -31,7 +32,7 @@ struct OnboardingView: View {
                     }
                     
                     NavigationLink(isActive: $isStudentActive) {
-                        StudentSignUpView()
+                        StudentSignUpView(isLogin: $isLogin)
                     } label: {
                         Text("학생 회원가입")
                             .frame(width: UIFrame.width - 48, height: 62)
@@ -41,7 +42,7 @@ struct OnboardingView: View {
                     }
 
                     NavigationLink(isActive: $isTeacherActive) {
-                        TeacherSignUpView()
+                        TeacherSignUpView(isLogin: $isLogin)
                     } label: {
                         Text("교사 회원가입")
                             .frame(width: UIFrame.width - 48, height: 62)
@@ -61,6 +62,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(isLogin: .constant(false))
     }
 }

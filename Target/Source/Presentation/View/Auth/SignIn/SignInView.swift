@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SignInView: View {
+    @Binding var isLogin: Bool
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel = SignInViewModel()
     var body: some View {
@@ -32,6 +33,7 @@ struct SignInView: View {
                 
                 Button {
                     viewModel.apply(.signInButtonDidTap)
+                    isLogin = true
                 } label: {
                     Text("로그인")
                         .frame(width: UIFrame.width - 48, height: 62)
@@ -58,6 +60,6 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(isLogin: .constant(false))
     }
 }

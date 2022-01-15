@@ -10,6 +10,7 @@ import SwiftUI
 import PhotosUI
 
 struct TeacherSignUpView: View {
+    @Binding var isLogin: Bool
     @ObservedObject var viewModel = TeacherSignUpViewModel()
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var imagePickerPresenting = false
@@ -44,6 +45,7 @@ struct TeacherSignUpView: View {
                 
                 Button {
                     viewModel.apply(.signUpButtonDidTap)
+                    isLogin = true
                 } label: {
                     Text("회원가입")
                         .frame(width: UIFrame.width - 48, height: 62)
@@ -81,6 +83,6 @@ struct TeacherSignUpView: View {
 
 struct TeacherSignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        TeacherSignUpView()
+        TeacherSignUpView(isLogin: .constant(false))
     }
 }
