@@ -16,6 +16,7 @@ final class TeacherRemote: BaseRemote<TeacherAPI>{
             .map { token in
                 TokenController.getInstance().login(token: token)
                 UserTypeController.getInstance().setUserType(userType: .TEACHER)
+                print(token)
                 return token
             }
             .eraseToAnyPublisher()

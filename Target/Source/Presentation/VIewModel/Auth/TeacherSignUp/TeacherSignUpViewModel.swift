@@ -35,7 +35,7 @@ final class TeacherSignUpViewModel: BaseViewModel{
     func apply(_ input: Input){
         switch input{
         case .signUpButtonDidTap:
-            break
+            teacherSignUp()
         }
     }
     
@@ -53,8 +53,10 @@ final class TeacherSignUpViewModel: BaseViewModel{
                                                          password: self?.password ?? "",
                                                          name: self?.name ?? "",
                                                          profileImageUrl: url)), onReceiveValue: { _ in
+                
                 self?.isSuccess = true
             })
+            
         }
     }
 }
