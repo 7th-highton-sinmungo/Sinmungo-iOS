@@ -9,5 +9,5 @@
 import Foundation
 
 class Constants {
-    static var DEFAULT_HOST = ""
+    static var DEFAULT_HOST = "https://13.209.176.77:8080/"
 }
