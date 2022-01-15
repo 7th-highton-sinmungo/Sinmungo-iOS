@@ -41,7 +41,7 @@ struct OnboardingView: View {
                     }
 
                     NavigationLink(isActive: $isTeacherActive) {
-                        Text("교사 회원가입ㅁㄴㅇㄹ")
+                        TeacherSignUpView()
                     } label: {
                         Text("교사 회원가입")
                             .frame(width: UIFrame.width - 48, height: 62)

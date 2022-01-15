@@ -53,6 +53,9 @@ struct SignInView: View {
             Image(systemName: "chevron.left")
                 .foregroundColor(.black)
         }))
+        .onDisappear(perform: {
+            viewModel.reset()
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("로그인")
