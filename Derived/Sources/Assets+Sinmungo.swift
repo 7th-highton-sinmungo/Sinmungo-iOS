@@ -19,6 +19,7 @@
 public enum SinmungoAsset {
   public enum Assets {
     public static let accentColor = SinmungoColors(name: "AccentColor")
+    public static let sinmungoGray = SinmungoColors(name: "Sinmungo_gray")
   }
   public enum PreviewAssets {
   }
