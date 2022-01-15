@@ -32,6 +32,11 @@ final class SignInViewModel: ObservableObject {
         case signInButtonDidTap
     }
     
+    func reset(){
+        self.id = ""
+        self.password = ""
+    }
+    
     func apply(_ input: Input) {
         switch input{
             
