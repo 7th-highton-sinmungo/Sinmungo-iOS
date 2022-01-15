@@ -25,7 +25,7 @@ struct UserView: View {
                 
                 List {
                     NavigationLink(destination: {
-                        Text("")
+                        PreferredPostView()
                     }, label: {
                         Text("좋아요한 게시물 보기")
                     })
