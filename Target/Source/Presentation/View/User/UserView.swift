@@ -12,34 +12,36 @@ struct UserView: View {
     @StateObject var viewModel = UserViewModel()
     
     var body: some View {
-        VStack {
-            if let user = viewModel.studentUser {
-                StudentProfileView(user: user)
-                    .padding(.horizontal)
-            }
-            else if let user = viewModel.teacherUser {
-                TeacherProfileView(user: user)
-                    .padding(.horizontal)
-            }
-            
-            List {
-                NavigationLink(destination: {
-                    Text("")
-                }, label: {
-                    Text("좋아요한 게시물 보기")
-                })
-                .padding()
+        NavigationView {
+            VStack {
+                if let user = viewModel.studentUser {
+                    StudentProfileView(user: user)
+                        .padding(.horizontal)
+                }
+                else if let user = viewModel.teacherUser {
+                    TeacherProfileView(user: user)
+                        .padding(.horizontal)
+                }
                 
-                NavigationLink(destination: {
-                    Text("")
-                }, label: {
-                    Text("내가 작성한 게시물 보기")
-                })
-                .padding()
+                List {
+                    NavigationLink(destination: {
+                        Text("")
+                    }, label: {
+                        Text("좋아요한 게시물 보기")
+                    })
+                    .padding()
+                    
+                    NavigationLink(destination: {
+                        Text("")
+                    }, label: {
+                        Text("내가 작성한 게시물 보기")
+                    })
+                    .padding()
+                }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
+            .navigationTitle("내 정보")
         }
-        .navigationTitle("내 정보")
     }
 }
 

@@ -12,19 +12,32 @@ struct MainView: View {
     @StateObject var viewModel = MainViewModel()
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                HStack {
-                    Spacer()
-                    SortButton(searchType: $viewModel.searchType)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        SortButton(searchType: $viewModel.searchType)
+                    }
+                    .padding(.horizontal)
+                    
+                    ForEach(viewModel.posts, id: \.self) { post in
+                        PostView(post: post)
+                    }
                 }
-                .padding(.horizontal)
-                
-                ForEach(viewModel.posts, id: \.self) { post in
-                    PostView(post: post)
-                }
+                .padding()
             }
-            .padding()
+            .navigationBarItems(
+                trailing:
+                    NavigationLink(
+                        destination: {
+                            CreatePostView()
+                        }, label: {
+                            Image(systemName: "plus")
+                        }
+                    )
+                )
+            .navigationTitle("Menu")
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct StudentSignUpView: View {
     @ObservedObject var viewModel = StudentSignUpViewModel()
@@ -20,7 +21,7 @@ struct StudentSignUpView: View {
                 imagePickerPresenting.toggle()
             } label: {
                 VStack {
-                    Image(uiImage: viewModel.profileImage ?? .init())
+                    Image(uiImage: viewModel.profileImage.count <= 0 ? .init() : viewModel.profileImage[0].image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 82, height: 82)
@@ -60,7 +61,7 @@ struct StudentSignUpView: View {
         .sheet(isPresented: $imagePickerPresenting, onDismiss: {
             viewModel.apply(.profileImageDidSelect)
         }, content: {
-            ImagePicker(image: $viewModel.selectedImage)
+            ImagePicker(configuration: getConfiguration(), requests: $viewModel.selectedImage)
         })
         .navigationBarItems(leading: Button(action: {
             mode.wrappedValue.dismiss()
@@ -74,6 +75,13 @@ struct StudentSignUpView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .navigationTitle("학생 회원가입")
+    }
+    
+    func getConfiguration() -> PHPickerConfiguration {
+        var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        configuration.filter = .images
+        
+        return configuration
     }
 }
 

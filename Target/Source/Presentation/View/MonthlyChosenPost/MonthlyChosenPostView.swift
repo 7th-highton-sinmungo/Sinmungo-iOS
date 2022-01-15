@@ -12,7 +12,6 @@ struct MonthlyChosenPostView: View {
     @ObservedObject var viewModel = MonthlyChosenPostViewModel()
     
     var body: some View {
-        
         NavigationView {
             ScrollView {
                 VStack {
@@ -25,7 +24,7 @@ struct MonthlyChosenPostView: View {
                             Image(systemName: "chevron.up")
                                 .resizable()
                                 .foregroundColor(.black)
-                                .frame(width: 24, height: 12)
+                                .frame(width: 22, height: 12)
                         }
                         
                         Button {
@@ -34,7 +33,7 @@ struct MonthlyChosenPostView: View {
                             Image(systemName: "chevron.down")
                                 .resizable()
                                 .foregroundColor(.black)
-                                .frame(width: 24, height: 12)
+                                .frame(width: 22, height: 12)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -51,7 +50,6 @@ struct MonthlyChosenPostView: View {
             .navigationTitle("\(viewModel.selectedDate.getMonth())월")
             .navigationBarTitleDisplayMode(.automatic)
         }
-        
     }
 }
 
