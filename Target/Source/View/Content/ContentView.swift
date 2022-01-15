@@ -19,12 +19,19 @@ struct ContentView: View {
                 }
                 .tag(0)
             
+            MonthlyChosenPost()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("월별 조회")
+                }
+                .tag(1)
+            
             UserView()
                 .tabItem {
                     Image(systemName: "person")
                     Text("내 정보")
                 }
-                .tag(1)
+                .tag(2)
         }
     }
 }
