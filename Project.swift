@@ -12,7 +12,7 @@ let project = Project(
             platform: .iOS,
             product: .app,
             bundleId: "\(orginazationIden).\(projectName)",
-            deploymentTarget: .iOS(targetVersion: "15.2", devices: [.iphone, .ipad]),
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
             infoPlist: .extendingDefault(with: [
                 "UILaunchScreen": [:]
             ]),
@@ -24,7 +24,7 @@ let project = Project(
             platform: .iOS,
             product: .unitTests,
             bundleId: "\(orginazationIden).\(projectName)Test",
-            deploymentTarget: .iOS(targetVersion: "15.2", devices: [.iphone, .ipad]),
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
             infoPlist: .default,
             sources: ["TargetTest/Tests/**"],
             dependencies: [
