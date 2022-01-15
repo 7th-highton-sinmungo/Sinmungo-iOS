@@ -13,9 +13,7 @@ let project = Project(
             product: .app,
             bundleId: "\(orginazationIden).\(projectName)",
             deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
-            infoPlist: .extendingDefault(with: [
-                "UILaunchScreen": [:]
-            ]),
+            infoPlist: .file(path: "Target/Support/Info.plist"),
             sources: ["Target/Source/**"],
             resources: ["Target/Resource/**"]
         ),

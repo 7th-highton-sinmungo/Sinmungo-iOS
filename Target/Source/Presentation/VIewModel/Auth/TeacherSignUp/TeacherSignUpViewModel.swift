@@ -48,6 +48,7 @@ final class TeacherSignUpViewModel: BaseViewModel{
                                                                  name: "",
                                                                  image: profileImage.first?.image ?? .init())]))
         { [weak self] url in
+            print(url)
             self?.addCancellable(self!.teacherRemote.postRegister(.init(id: self?.id ?? "",
                                                          password: self?.password ?? "",
                                                          name: self?.name ?? "",
