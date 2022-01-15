@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var selection = 0
+    
     var body: some View {
-        Text("Hello, World!")
+        TabView(selection: $selection) {
+            MainView()
+                .tabItem {
+                    Image(systemName: selection == 0 ? "house" : "house.fill")
+                }
+                .tag(0)
+        }
     }
 }
 
