@@ -23,7 +23,7 @@ struct CreatePostView: View {
                 Image(systemName: "chevron.right")
             }
             
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 VStack {
                     if viewModel.images.count <= 0 {
                         VStack {
@@ -49,7 +49,6 @@ struct CreatePostView: View {
                         }
                     }
                 }
-                .padding(.bottom)
             }
             .padding(.bottom)
             
@@ -68,9 +67,8 @@ struct CreatePostView: View {
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.white)
                     .background(
-                        Color(SinmungoAsset.Assets.sinmungoMain.color)
+                        Rectangle()
                     )
-                    .foregroundColor(Color("LoginViewDarkColor"))
             }
         }
         .padding()
