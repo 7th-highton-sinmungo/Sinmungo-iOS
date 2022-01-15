@@ -11,6 +11,7 @@ import Moya
 import Alamofire
 
 class BaseRemote<T: TargetType> {
+    let provider = MoyaProvider<T>(plugins: [NetworkLoggerPlugin()])
     let decoder = JSONDecoder()
     
     func request(_ target: MoyaProvider<T>.Target, callbackQueue: DispatchQueue? = nil) -> AnyPublisher<Moya.Response, Error> {
@@ -21,7 +22,7 @@ class BaseRemote<T: TargetType> {
             .eraseToAnyPublisher()
         }
         
-        return MoyaProvider().requestPublisher(target, callbackQueue: callbackQueue)
+        return provider.requestPublisher(target, callbackQueue: callbackQueue)
             .mapError { SinmungoError.error(errorBody: ["status": $0.response?.statusCode ?? 0]) }
             .timeout(120, scheduler: DispatchQueue.main, customError: { SinmungoError.error(message: "요청시간이 만료되었습니다.") })
             .eraseToAnyPublisher()

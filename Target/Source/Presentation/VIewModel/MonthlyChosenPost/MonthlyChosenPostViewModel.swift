@@ -9,18 +9,10 @@
 import Combine
 import Foundation
 
-final class MonthlyChosenPostViewModel: ObservableObject{
+final class MonthlyChosenPostViewModel: BaseViewModel {
     // MARK: - Properties
     @Published var selectedDate = Date()
     @Published var posts: [Post] = []
-    
-    private var bag = Set<AnyCancellable>()
-    
-    // MARK: - Init
-    init(){
-        bindInput()
-        bindOutput()
-    }
     
     deinit {
         bag.removeAll()
@@ -43,12 +35,37 @@ final class MonthlyChosenPostViewModel: ObservableObject{
         }
     }
     
-    private func bindInput(){
-        
+    let chooseRemote = ChooseRemote()
+    let likeRemote = LikeRemote()
+    let postRemote = PostRemote()
+    
+    func onApplyChoose(index: Int) {
+        addCancellable(chooseRemote.postChoose(index)) { [weak self] _ in
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isChosen = true
+        }
     }
     
-    // MARK: - Output
-    private func bindOutput(){
-        
+    func onDeleteChoose(index: Int) {
+        addCancellable(chooseRemote.deleteChoose(index)) { [weak self] _ in
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isChosen = false
+        }
+    }
+    
+    func onApplyLike(index: Int) {
+        addCancellable(likeRemote.postLike(index)) { [weak self] _ in
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isLike = true
+        }
+    }
+    
+    func onDeleteLike(index: Int) {
+        addCancellable(likeRemote.deleteLike(index)) { [weak self] _ in
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isLike = false
+        }
+    }
+    
+    func onDeletePost(index: Int) {
+        addCancellable(postRemote.deletePost(index: index)) { [weak self] _ in
+            self?.posts = (self?.posts.filter({ $0.index == index }))!
+        }
     }
 }

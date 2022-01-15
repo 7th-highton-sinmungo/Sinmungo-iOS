@@ -16,7 +16,7 @@ struct PreferredPostView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 ForEach(viewModel.posts, id: \.self) { post in
-                    PostView(post: post)
+                    PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
                 }
             }
             .padding()
