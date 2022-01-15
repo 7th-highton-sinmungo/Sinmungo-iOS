@@ -82,6 +82,7 @@ struct CreatePostView: View {
                         Rectangle()
                     )
             }
+            .cornerRadius(5)
         }
         .configureBackbutton(mode: mode)
         .padding()

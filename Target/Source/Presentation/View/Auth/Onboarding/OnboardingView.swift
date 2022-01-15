@@ -18,45 +18,58 @@ struct OnboardingView: View {
         NavigationView {
             VStack(alignment: .center) {
                 Spacer()
-                LogoView()
+                
+                Text("급식 신문고")
+                    .font(.largeTitle)
+                
                 Spacer()
-                VStack(spacing: 20){
+                
+                Spacer()
+                
+                VStack(spacing: 15) {
                     NavigationLink(isActive: $isSignInActive) {
                         SignInView(isLogin: $isLogin)
                     } label: {
                         Text("로그인")
-                            .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .padding()
+                            .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .background(
+                                Rectangle()
+                            )
                     }
+                    .cornerRadius(8)
                     
                     NavigationLink(isActive: $isStudentActive) {
                         StudentSignUpView(isLogin: $isLogin)
                     } label: {
                         Text("학생 회원가입")
-                            .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .padding()
+                            .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .background(
+                                Rectangle()
+                            )
                     }
+                    .cornerRadius(8)
 
                     NavigationLink(isActive: $isTeacherActive) {
                         TeacherSignUpView(isLogin: $isLogin)
                     } label: {
                         Text("교사 회원가입")
-                            .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .padding()
+                            .frame(maxWidth: .infinity)
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .background(
+                                Rectangle()
+                            )
                     }
+                    .cornerRadius(8)
                 }
-                Spacer()
+                .padding()
             }
             .navigationBarHidden(true)
-            
         }
-        
     }
 }
 
