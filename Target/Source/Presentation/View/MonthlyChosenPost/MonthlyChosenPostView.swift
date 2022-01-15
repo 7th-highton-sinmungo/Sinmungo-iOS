@@ -24,8 +24,9 @@ struct MonthlyChosenPostView: View {
                             Image(systemName: "chevron.up")
                                 .resizable()
                                 .foregroundColor(.black)
-                                .frame(width: 22, height: 12)
+                                .frame(width: 20, height: 12)
                         }
+                        .padding(.trailing, 8)
                         
                         Button {
                             viewModel.apply(.minusDidTap)
@@ -33,7 +34,7 @@ struct MonthlyChosenPostView: View {
                             Image(systemName: "chevron.down")
                                 .resizable()
                                 .foregroundColor(.black)
-                                .frame(width: 22, height: 12)
+                                .frame(width: 20, height: 12)
                         }
                     }
                     .padding(.horizontal, 20)
