@@ -26,6 +26,16 @@ struct MyPostsView: View {
             }
             .padding()
         }
+        .navigationBarItems(
+            trailing:
+                NavigationLink(
+                    destination: {
+                        CreatePostView()
+                    }, label: {
+                        Image(systemName: "plus")
+                    }
+                )
+            )
         .configureBackbutton(mode: mode)
         .navigationTitle("MY")
         .navigationBarTitleDisplayMode(.automatic)
