@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class MainViewModel: BaseViewModel {
     @Published var posts: [Post] = []
@@ -20,12 +19,9 @@ class MainViewModel: BaseViewModel {
         fetchPosts()
     }
     
-    func fetchPosts(control: UIRefreshControl? = nil) {
+    func fetchPosts() {
         addCancellable(userRemote.getSortedPosts(searchType.rawValue)) { [weak self] posts in
             self?.posts = posts
-            if let control = control {
-                control.endRefreshing()
-            }
         }
     }
     
@@ -61,7 +57,7 @@ class MainViewModel: BaseViewModel {
     
     func onDeletePost(index: Int) {
         addCancellable(postRemote.deletePost(index: index)) { [weak self] _ in
-            self?.posts = (self?.posts.filter({ $0.index == index }))!
+            self?.posts = (self?.posts.filter({ $0.index != index }))!
         }
     }
 }

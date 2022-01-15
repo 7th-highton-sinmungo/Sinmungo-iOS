@@ -41,6 +41,16 @@ struct UserView: View {
                 .listStyle(PlainListStyle())
             }
             .navigationTitle("내 정보")
+            .navigationBarItems(trailing: Menu(content: {
+                Button(action: {
+                    TokenController.getInstance().logout()
+                }, label: {
+                    Text("로그아웃")
+                    Image("rectangle.portrait.and.arrow.right")
+                })
+            }, label: {
+                Image("gear")
+            }))
         }
     }
 }
