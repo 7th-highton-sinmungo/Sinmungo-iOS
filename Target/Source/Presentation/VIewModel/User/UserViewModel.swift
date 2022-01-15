@@ -8,7 +8,31 @@
 
 import Foundation
 
-class UserViewModel: ObservableObject {
-    @Published var studentUser: StudentUser? = StudentUser(name: "뚱이", gcn: 2202, profileImageUrl:  "https://img.insight.co.kr/static/2020/08/12/700/fyzvinle3b068ce501hq.jpg")
+class UserViewModel: BaseViewModel {
+    @Published var studentUser: StudentUser?
     @Published var teacherUser: TeacherUser?
+    
+    let teacherRemote = TeacherRemote()
+    let studentRemote = StudentRemote()
+    
+    override init() {
+        super.init()
+        fetchUser()
+    }
+    
+    func fetchUser() {
+        studentUser = nil
+        teacherUser = nil
+        if UserTypeController.getInstance().getUserType() == UserType.STUDENT {
+            addCancellable(studentRemote.getUserInfo()) { [weak self] userInfo in
+                self?.studentUser = userInfo
+            }
+        }
+        else {
+            addCancellable(teacherRemote.getUserInfo()) { [weak self] userInfo in
+                self?.teacherUser = userInfo
+            }
+            
+        }
+    }
 }

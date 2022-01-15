@@ -98,6 +98,7 @@ struct PostView: View {
                         Image(systemName: "checkmark.square.fill")
                             .font(.title2)
                     }
+                    .padding()
                 }
                 else {
                     Button {
@@ -106,12 +107,15 @@ struct PostView: View {
                         Image(systemName: "checkmark.square")
                             .font(.title2)
                     }
+                    .padding()
                 }
             }
             else {
                 if post.isChosen {
                     Image(systemName: "checkmark")
                         .font(.title2)
+                        .padding()
+                        .foregroundColor(.accentColor)
                 }
             }
         }

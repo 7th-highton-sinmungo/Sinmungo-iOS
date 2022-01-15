@@ -26,12 +26,12 @@ struct StudentProfileView: View {
                 }
             }
             .clipShape(Circle())
-            .frame(width: 50, height: 50, alignment: .center)
+            .frame(width: 70, height: 70, alignment: .center)
             
             VStack(alignment: .leading) {
                 Text(user.name)
                 
-                Text(String(user.gcn))
+                Text(user.gcn)
                     .foregroundColor(.secondary)
             }
             .padding()
@@ -43,6 +43,6 @@ struct StudentProfileView: View {
 
 struct StudentProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        StudentProfileView(user: StudentUser(name: "뚱이", gcn: 2202, profileImageUrl: "https://img.insight.co.kr/static/2020/08/12/700/fyzvinle3b068ce501hq.jpg"))
+        StudentProfileView(user: StudentUser(name: "뚱이", gcn: "2202", profileImageUrl: "https://img.insight.co.kr/static/2020/08/12/700/fyzvinle3b068ce501hq.jpg"))
     }
 }

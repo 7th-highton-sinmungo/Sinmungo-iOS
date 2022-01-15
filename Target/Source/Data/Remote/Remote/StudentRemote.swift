@@ -22,9 +22,16 @@ class StudentRemote: BaseRemote<StudentAPI> {
             .eraseToAnyPublisher()
     }
     
-    func getLikedPosts() -> AnyPublisher<StudentUser, Error> {
+    func getUserInfo() -> AnyPublisher<StudentUser, Error> {
         return self.request(.getUserInfo)
             .map(StudentUser.self, using: decoder)
+            .eraseToAnyPublisher()
+    }
+    
+    func getMyPosts() -> AnyPublisher<[Post], Error> {
+        return self.request(.getMyPosts)
+            .map(PostResponse.self, using: decoder)
+            .map({ $0.postList })
             .eraseToAnyPublisher()
     }
 }

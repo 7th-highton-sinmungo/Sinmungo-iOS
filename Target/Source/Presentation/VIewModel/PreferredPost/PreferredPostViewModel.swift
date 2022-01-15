@@ -16,6 +16,11 @@ final class PreferredPostViewModel: BaseViewModel {
     let likeRemote = LikeRemote()
     let postRemote = PostRemote()
     
+    override init() {
+        super.init()
+        fetchPosts()
+    }
+    
     func fetchPosts() {
         addCancellable(userRemote.getLikedPosts()) { [weak self] posts in
             self?.posts = posts

@@ -11,6 +11,7 @@ import Moya
 enum StudentAPI {
     case postRegister(_ request: StudentRegisterRequest)
     case getUserInfo
+    case getMyPosts
 }
 
 extension StudentAPI: TargetType {
@@ -24,6 +25,9 @@ extension StudentAPI: TargetType {
             return ""
         case .getUserInfo:
             return "/info"
+        case .getMyPosts:
+            return "/post"
+
         }
     }
     
@@ -33,6 +37,8 @@ extension StudentAPI: TargetType {
             return .post
         case .getUserInfo:
             return .get
+        case .getMyPosts:
+            return .get
         }
     }
     
@@ -41,6 +47,8 @@ extension StudentAPI: TargetType {
         case let .postRegister(request):
             return .requestData(try! JSONEncoder().encode(request))
         case .getUserInfo:
+            return .requestPlain
+        case .getMyPosts:
             return .requestPlain
         }
     }

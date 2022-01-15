@@ -10,18 +10,18 @@ import Foundation
 
 struct StudentUser: Codable {
     var name: String
-    var gcn: Int
+    var gcn: String
     var profileImageUrl: String
     
     // Codable
-    enum StudentUserKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case name = "name"
         case gcn = "gcn"
         case profileImageUrl = "profile_image_url"
     }
     
     // General
-    internal init(name: String, gcn: Int, profileImageUrl: String) {
+    internal init(name: String, gcn: String, profileImageUrl: String) {
         self.name = name
         self.gcn = gcn
         self.profileImageUrl = profileImageUrl

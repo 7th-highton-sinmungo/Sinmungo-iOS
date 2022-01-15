@@ -14,24 +14,27 @@ struct UserView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                if let user = viewModel.studentUser {
-                    StudentProfileView(user: user)
-                        .padding(.horizontal)
+            List {
+                VStack {
+                    if UserTypeController.getInstance().getUserType() == UserType.STUDENT {
+                        StudentProfileView(user: viewModel.studentUser ?? StudentUser(name: "", gcn: "", profileImageUrl: ""))
+                            .padding(.horizontal)
+                    }
+                    else {
+                        TeacherProfileView(user: viewModel.teacherUser ?? TeacherUser(name: "", profileImageUrl: ""))
+                            .padding(.horizontal)
+                    }
                 }
-                else if let user = viewModel.teacherUser {
-                    TeacherProfileView(user: user)
-                        .padding(.horizontal)
-                }
+                .listRowSeparator(.hidden)
                 
-                List {
-                    NavigationLink(destination: {
-                        PreferredPostView()
-                    }, label: {
-                        Text("좋아요한 게시물 보기")
-                    })
-                    .padding()
-                    
+                NavigationLink(destination: {
+                    PreferredPostView()
+                }, label: {
+                    Text("좋아요한 게시물 보기")
+                })
+                .padding()
+                
+                if UserTypeController.getInstance().getUserType() == UserType.STUDENT {
                     NavigationLink(destination: {
                         MyPostsView()
                     }, label: {
@@ -39,8 +42,11 @@ struct UserView: View {
                     })
                     .padding()
                 }
-                .listStyle(PlainListStyle())
             }
+            .refreshable {
+                viewModel.fetchUser()
+            }
+            .listStyle(PlainListStyle())
             .navigationTitle("내 정보")
             .navigationBarItems(trailing: Menu(content: {
                 Button(action: {

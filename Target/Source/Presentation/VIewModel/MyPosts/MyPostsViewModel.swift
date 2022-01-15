@@ -15,6 +15,18 @@ final class MyPostsViewModel: BaseViewModel {
     let chooseRemote = ChooseRemote()
     let likeRemote = LikeRemote()
     let postRemote = PostRemote()
+    let studentRemote = StudentRemote()
+    
+    override init() {
+        super.init()
+        fetchPosts()
+    }
+    
+    func fetchPosts() {
+        addCancellable(studentRemote.getMyPosts()) { [weak self] posts in
+            self?.posts = posts
+        }
+    }
     
     func onApplyChoose(index: Int) {
         addCancellable(chooseRemote.postChoose(index)) { [weak self] _ in
