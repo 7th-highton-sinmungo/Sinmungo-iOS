@@ -1,5 +1,5 @@
 //
-//  StudentSignUpVM.swift
+//  TeacherSignUpViewModel.swift
 //  Sinmungo
 //
 //  Created by 최형우 on 2022/01/15.
@@ -9,20 +9,19 @@
 import Combine
 import UIKit
 
-final class StudentSignUpViewModel: ObservableObject {
+final class TeacherSignUpViewModel: ObservableObject{
     // MARK: - Properties
     @Published var name = ""
-    @Published var gcn = ""
     @Published var id = ""
     @Published var password = ""
     @Published var profileImage: UIImage?
     @Published var selectedImage: UIImage?
     
     private var bag = Set<AnyCancellable>()
+    
     // MARK: - Init
     init(){
-        bindInput()
-        bindOutput()
+        
     }
     
     deinit {
@@ -34,17 +33,15 @@ final class StudentSignUpViewModel: ObservableObject {
         case signUpButtonDidTap
         case profileImageDidSelect
     }
-    
     func reset(){
         self.name = ""
-        self.gcn = ""
         self.id = ""
         self.password = ""
         self.profileImage = nil
         self.selectedImage = nil
     }
     
-    func apply(_ input: Input) {
+    func apply(_ input: Input){
         switch input{
         case .signUpButtonDidTap:
             break
@@ -56,11 +53,13 @@ final class StudentSignUpViewModel: ObservableObject {
         }
     }
     
-    private func bindInput(){
+    func bindInput(){
         
     }
+    
+    
     // MARK: - Output
-    private func bindOutput(){
+    func bindOutput(){
         
     }
 }

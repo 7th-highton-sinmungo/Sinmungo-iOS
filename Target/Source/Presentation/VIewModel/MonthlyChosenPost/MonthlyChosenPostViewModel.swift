@@ -1,5 +1,5 @@
 //
-//  SignInVM.swift
+//  MonthlyChosenPostViewModel.swift
 //  Sinmungo
 //
 //  Created by 최형우 on 2022/01/15.
@@ -7,18 +7,17 @@
 //
 
 import Combine
+import Foundation
 
-final class SignInViewModel: ObservableObject {
+final class MonthlyChosenPostViewModel: ObservableObject{
     // MARK: - Properties
-    @Published var id = ""
-    @Published var password = ""
+    @Published var selectedDate = Date()
+    @Published var posts: [Post] = []
     
     private var bag = Set<AnyCancellable>()
     
-    
     // MARK: - Init
     init(){
-        
         bindInput()
         bindOutput()
     }
@@ -29,21 +28,21 @@ final class SignInViewModel: ObservableObject {
     
     // MARK: - Input
     enum Input{
-        case signInButtonDidTap
+        case plusDidTap
+        case minusDidTap
     }
     
-    func reset(){
-        self.id = ""
-        self.password = ""
-    }
     
     func apply(_ input: Input) {
+        let month = TimeInterval(60 * 1 * 60 * 24 * 30)
         switch input{
-            
-        default:
-            return
+        case .plusDidTap:
+            selectedDate.addTimeInterval(month)
+        case .minusDidTap:
+            selectedDate.addTimeInterval(-month)
         }
     }
+    
     private func bindInput(){
         
     }
