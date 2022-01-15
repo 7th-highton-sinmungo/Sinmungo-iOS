@@ -26,7 +26,7 @@ struct StudentProfileView: View {
                 }
             }
             .clipShape(Circle())
-            .frame(width: 70, height: 70, alignment: .center)
+            .frame(width: 50, height: 50, alignment: .center)
             
             VStack(alignment: .leading) {
                 Text(user.name)
