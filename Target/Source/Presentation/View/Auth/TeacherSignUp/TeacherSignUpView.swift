@@ -57,10 +57,8 @@ struct TeacherSignUpView: View {
             
 
         }
-        .sheet(isPresented: $imagePickerPresenting, onDismiss: {
-            viewModel.apply(.profileImageDidSelect)
-        }, content: {
-            ImagePicker(configuration: getConfiguration(), requests: $viewModel.selectedImage)
+        .sheet(isPresented: $imagePickerPresenting, content: {
+            ImagePicker(configuration: getConfiguration(), requests: $viewModel.profileImage)
         })
         .navigationBarItems(leading: Button(action: {
             mode.wrappedValue.dismiss()
@@ -74,6 +72,9 @@ struct TeacherSignUpView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .navigationTitle("교사 회원가입")
+        .onChange(of: viewModel.profileImage) { value in
+            print(value)
+        }
     }
     
     func getConfiguration() -> PHPickerConfiguration {

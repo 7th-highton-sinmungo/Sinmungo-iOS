@@ -16,7 +16,6 @@ final class StudentSignUpViewModel: ObservableObject {
     @Published var id = ""
     @Published var password = ""
     @Published var profileImage: [UploadRequest] = []
-    @Published var selectedImage: [UploadRequest] = []
     
     private var bag = Set<AnyCancellable>()
     // MARK: - Init
@@ -32,7 +31,6 @@ final class StudentSignUpViewModel: ObservableObject {
     // MARK: - Input
     enum Input{
         case signUpButtonDidTap
-        case profileImageDidSelect
     }
     
     func reset(){
@@ -41,18 +39,12 @@ final class StudentSignUpViewModel: ObservableObject {
         self.id = ""
         self.password = ""
         self.profileImage = []
-        self.selectedImage = []
     }
     
     func apply(_ input: Input) {
         switch input{
         case .signUpButtonDidTap:
             break
-        case .profileImageDidSelect:
-            guard selectedImage.count <= 0 else {
-                return
-            }
-            self.profileImage = selectedImage
         }
     }
     

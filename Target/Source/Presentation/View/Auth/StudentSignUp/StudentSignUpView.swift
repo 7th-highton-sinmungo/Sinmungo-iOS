@@ -58,10 +58,8 @@ struct StudentSignUpView: View {
             
 
         }
-        .sheet(isPresented: $imagePickerPresenting, onDismiss: {
-            viewModel.apply(.profileImageDidSelect)
-        }, content: {
-            ImagePicker(configuration: getConfiguration(), requests: $viewModel.selectedImage)
+        .sheet(isPresented: $imagePickerPresenting, content: {
+            ImagePicker(configuration: getConfiguration(), requests: $viewModel.profileImage)
         })
         .navigationBarItems(leading: Button(action: {
             mode.wrappedValue.dismiss()
