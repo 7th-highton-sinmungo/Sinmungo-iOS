@@ -21,8 +21,9 @@ class MainViewModel: BaseViewModel {
     
     func fetchPosts() {
         addCancellable(userRemote.getSortedPosts(searchType.rawValue)) { [weak self] posts in
+            
             self?.posts = posts
-        }
+        } 
     }
     
     let chooseRemote = ChooseRemote()
@@ -45,7 +46,7 @@ class MainViewModel: BaseViewModel {
         addCancellable(likeRemote.postLike(index)) { [weak self] _ in
             self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isLike = true
             self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].likeCount += 1
-        }
+        } 
     }
     
     func onDeleteLike(index: Int) {

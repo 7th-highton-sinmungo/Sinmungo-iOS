@@ -77,6 +77,9 @@ struct MainView: View {
                 viewModel.fetchPosts()
             }
         }
+        .onAppear {
+            viewModel.fetchPosts()
+        }
     }
 }
 
