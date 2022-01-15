@@ -13,6 +13,11 @@ final class TeacherRemote: BaseRemote<TeacherAPI>{
         return self.request(.postRegister(request))
             .map(TokenResponse.self, using: decoder)
             .map { $0.accessToken }
+            .map { token in
+                TokenController.getInstance().login(token: token)
+                UserTypeController.getInstance().setUserType(userType: .TEACHER)
+                return token
+            }
             .eraseToAnyPublisher()
     }
     

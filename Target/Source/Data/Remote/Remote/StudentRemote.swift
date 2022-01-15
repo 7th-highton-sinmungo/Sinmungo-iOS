@@ -13,6 +13,11 @@ class StudentRemote: BaseRemote<StudentAPI> {
         return self.request(.postRegister(request))
             .map(TokenResponse.self, using: decoder)
             .map { $0.accessToken }
+            .map { token in
+                TokenController.getInstance().login(token: token)
+                UserTypeController.getInstance().setUserType(userType: .STUDENT)
+                return token
+            }
             .eraseToAnyPublisher()
     }
     
