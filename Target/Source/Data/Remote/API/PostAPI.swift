@@ -10,8 +10,8 @@ import Moya
 
 enum PostAPI{
     case postCreatePost(_ request: PostRequest)
-    case postUpdatePost(_ request: PostRequest, _ index: Int)
-    case postDeletePost(_ index: Int)
+    case patchUpdatePost(_ request: PostRequest, _ index: Int)
+    case deletePost(_ index: Int)
 }
 
 extension PostAPI: TargetType{
@@ -23,9 +23,9 @@ extension PostAPI: TargetType{
         switch self{
         case .postCreatePost:
             return ""
-        case let .postUpdatePost(_, index):
+        case let .patchUpdatePost(_, index):
             return "/\(index)"
-        case let .postDeletePost(index):
+        case let .deletePost(index):
             return "/\(index)"
         }
     }
@@ -34,9 +34,9 @@ extension PostAPI: TargetType{
         switch self{
         case .postCreatePost:
             return .post
-        case .postUpdatePost:
+        case .patchUpdatePost:
             return .patch
-        case .postDeletePost:
+        case .deletePost:
             return .delete
         }
     }
@@ -45,9 +45,9 @@ extension PostAPI: TargetType{
         switch self{
         case let .postCreatePost(request):
             return .requestData(try! JSONEncoder().encode(request))
-        case let .postUpdatePost(request, _):
+        case let .patchUpdatePost(request, _):
             return .requestData(try! JSONEncoder().encode(request))
-        case .postDeletePost:
+        case .deletePost:
             return .requestPlain
         }
     }

@@ -30,7 +30,7 @@ class UserRemote: BaseRemote<UserAPI> {
             .eraseToAnyPublisher()
     }
     
-    func postLogin() -> AnyPublisher<[Post], Error> {
+    func getChosenPosts() -> AnyPublisher<[Post], Error> {
         return self.request(.getChosenPosts)
             .map(PostResponse.self, using: decoder)
             .map { $0.postList }
