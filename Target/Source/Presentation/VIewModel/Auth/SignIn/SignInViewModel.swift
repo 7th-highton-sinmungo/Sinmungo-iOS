@@ -8,21 +8,14 @@
 
 import Combine
 
-final class SignInViewModel: ObservableObject {
+final class SignInViewModel: BaseViewModel {
     // MARK: - Properties
     @Published var id = ""
     @Published var password = ""
+    @Published var isSuccess = false
     
-    private var bag = Set<AnyCancellable>()
     
-    
-    // MARK: - Init
-    init(){
-        
-        bindInput()
-        bindOutput()
-    }
-    
+    private let userRemote = UserRemote()
     deinit {
         bag.removeAll()
     }
@@ -37,19 +30,18 @@ final class SignInViewModel: ObservableObject {
         self.password = ""
     }
     
+    
     func apply(_ input: Input) {
         switch input{
-            
-        default:
-            return
+        case .signInButtonDidTap:
+            login()
         }
     }
-    private func bindInput(){
-        
-    }
     
-    // MARK: - Output
-    private func bindOutput(){
-        
+    private func login(){
+        addCancellable(userRemote.postLogin(.init(id: id, password: password))) { [weak self] _ in
+            self?.isSuccess = true
+        }
+
     }
 }
