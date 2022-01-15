@@ -43,8 +43,12 @@ final class SignInViewModel: BaseViewModel {
             return
         }
         
+        
         addCancellable(userRemote.postLogin(.init(id: id, password: password))) { [weak self] _ in
+            
             self?.isSuccess = true
+        } onReceiveFailure: { err in
+            print(err.localizedDescription)
         }
 
     }
