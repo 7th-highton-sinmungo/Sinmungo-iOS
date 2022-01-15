@@ -9,12 +9,14 @@
 import Foundation
 
 struct Post: Codable, Hashable {
-    var index: Int;
-    var content: String;
+    var index: Int
+    var content: String
     var createdAt: Date
-    var images: [String];
-    var likeCount: Int;
-    var isLike: Bool;
+    var images: [String]
+    var likeCount: Int
+    var isLike: Bool
+    var isChosen: Bool
+    var isMine: Bool
     
     // Codable
     static func == (lhs: Post, rhs: Post) -> Bool {
@@ -32,16 +34,20 @@ struct Post: Codable, Hashable {
         case createdAt = "created_at"
         case images = "images"
         case likeCount = "like_count"
-        case isLike = "is_like"
+        case isLike = "liked"
+        case isChosen = "chosen"
+        case isMine = "mine"
     }
     
     // General
-    internal init(index: Int, content: String, createdAt: Date, images: [String], likeCount: Int, isLike: Bool) {
+    internal init(index: Int, content: String, createdAt: Date, images: [String], likeCount: Int, isLike: Bool, isChosen: Bool, isMine: Bool) {
         self.index = index
         self.content = content
         self.createdAt = createdAt
         self.images = images
         self.likeCount = likeCount
         self.isLike = isLike
+        self.isChosen = isChosen
+        self.isMine = isMine
     }
 }

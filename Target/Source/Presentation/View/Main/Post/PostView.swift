@@ -50,6 +50,6 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(post: Post(index: 0, content: "", createdAt: Date(), images: [""], likeCount: 0, isLike: true))
+        PostView(post: Post(index: 0, content: "", createdAt: Date(), images: [""], likeCount: 0, isLike: true, isChosen: false, isMine: false))
     }
 }
