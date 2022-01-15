@@ -36,8 +36,8 @@ struct SignInView: View {
                 } label: {
                     Text("로그인")
                         .frame(width: UIFrame.width - 48, height: 62)
-                        .background(Color(SinmungoAsset.Assets.sinmungoGray.color))
-                        .foregroundColor(.black)
+                        .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                        .foregroundColor(.white)
                         .cornerRadius(8)
                 }
             }

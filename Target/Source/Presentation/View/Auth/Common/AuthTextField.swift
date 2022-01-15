@@ -24,7 +24,7 @@ struct AuthTextField: View {
                 .padding(.horizontal, 5)
                 .overlay {
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.black, lineWidth: 1)
+                        .stroke(Color(SinmungoAsset.Assets.sinmungoMain.color), lineWidth: 1)
                         .frame(height: 40)
                 }
             

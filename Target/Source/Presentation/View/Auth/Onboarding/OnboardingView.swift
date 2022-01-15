@@ -25,8 +25,8 @@ struct OnboardingView: View {
                     } label: {
                         Text("로그인")
                             .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoGray.color))
-                            .foregroundColor(.black)
+                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .foregroundColor(.white)
                             .cornerRadius(8)
                     }
                     
@@ -35,8 +35,8 @@ struct OnboardingView: View {
                     } label: {
                         Text("학생 회원가입")
                             .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoGray.color))
-                            .foregroundColor(.black)
+                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .foregroundColor(.white)
                             .cornerRadius(8)
                     }
 
@@ -45,8 +45,8 @@ struct OnboardingView: View {
                     } label: {
                         Text("교사 회원가입")
                             .frame(width: UIFrame.width - 48, height: 62)
-                            .background(Color(SinmungoAsset.Assets.sinmungoGray.color))
-                            .foregroundColor(.black)
+                            .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                            .foregroundColor(.white)
                             .cornerRadius(8)
                     }
                 }
