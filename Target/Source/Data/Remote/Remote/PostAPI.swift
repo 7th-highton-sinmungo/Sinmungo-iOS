@@ -9,8 +9,6 @@
 import Moya
 
 enum PostAPI{
-    case getPosts(sort: SearchType)
-    case getLikedPosts
     case postCreatePost(PostRequest)
     case postUpdatePost(PostRequest, Int)
     case postDeletePost(Int)
@@ -18,28 +16,22 @@ enum PostAPI{
 
 extension PostAPI: TargetType{
     var baseURL: URL {
-        return URL(string: Constants.DEFAULT_HOST)!
+        return URL(string: Constants.DEFAULT_HOST + "/post")!
     }
     
     var path: String {
         switch self{
-        case .getPosts:
-            return "/user/post"
-        case .getLikedPosts:
-            return "/user/post/liked"
         case .postCreatePost:
-            return "/post"
+            return ""
         case let .postUpdatePost(_, index):
-            return "/post/\(index)"
+            return "/\(index)"
         case let .postDeletePost(index):
-            return "/post/\(index)"
+            return "g/\(index)"
         }
     }
     
     var method: Method {
         switch self{
-        case .getPosts, .getLikedPosts:
-            return .get
         case .postCreatePost:
             return .post
         case .postUpdatePost:
@@ -51,12 +43,6 @@ extension PostAPI: TargetType{
     
     var task: Task {
         switch self{
-        case let .getPosts(sort):
-            return .requestParameters(parameters: [
-                "sort" : sort == .RECENT ? 0 : 1
-            ], encoding: URLEncoding.queryString)
-        case .getLikedPosts:
-            return .requestPlain
         case let .postCreatePost(req):
             return .requestParameters(parameters: [
                 "content" : req.content,
