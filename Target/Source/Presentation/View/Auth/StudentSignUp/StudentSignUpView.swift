@@ -63,17 +63,11 @@ struct StudentSignUpView: View {
         }, content: {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.selectedImage)
         })
-        .navigationBarItems(leading: Button(action: {
-            mode.wrappedValue.dismiss()
-        }, label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.black)
-        }))
+        .configureBackbutton(mode: mode)
         .onDisappear(perform: {
             viewModel.reset()
         })
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .navigationTitle("학생 회원가입")
     }
     
