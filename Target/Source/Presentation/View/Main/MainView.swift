@@ -30,7 +30,7 @@ struct MainView: View {
             .navigationTitle("Menu")
             .navigationBarItems(
                 trailing: NavigationLink(destination: {
-                    Text("")
+                    CreatePostView()
                 }, label: {
                     Image(systemName: "plus")
                 })
