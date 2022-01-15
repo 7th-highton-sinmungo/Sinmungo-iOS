@@ -12,7 +12,7 @@ struct LoginResponse: Codable {
     var accessToken: String
     var authority: UserType
     
-    enum TokenResponseKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case authority = "authority"
     }

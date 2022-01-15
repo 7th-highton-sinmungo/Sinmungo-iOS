@@ -11,7 +11,7 @@ import Foundation
 struct TokenResponse: Codable {
     var accessToken: String
     
-    enum TokenResponseKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
     }
 }

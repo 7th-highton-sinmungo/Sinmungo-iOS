@@ -11,7 +11,7 @@ import Foundation
 struct PostResponse: Codable {
     var postList: [Post]
     
-    enum PostResponseKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case postList = "post_list"
     }
 }

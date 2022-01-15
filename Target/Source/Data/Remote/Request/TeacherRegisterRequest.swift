@@ -14,7 +14,7 @@ struct TeacherRegisterRequest: Codable {
     var name: String
     var profileImageUrl: String
     
-    enum TeacherRegisterRequestKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id = "id"
         case password = "password"
         case name = "name"

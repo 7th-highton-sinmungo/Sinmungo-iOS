@@ -21,7 +21,7 @@ extension TeacherAPI: TargetType {
     var path: String {
         switch self {
         case .postRegister:
-            return "/"
+            return ""
         case .getUserInfo:
             return "/info"
         }
