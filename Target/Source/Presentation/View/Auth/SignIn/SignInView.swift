@@ -12,41 +12,60 @@ struct SignInView: View {
     @Binding var isLogin: Bool
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @ObservedObject var viewModel = SignInViewModel()
+    
     var body: some View {
-        VStack {
-            
-            HStack {
-                Text("안녕하세요\n급식신문고 입니다.")
-                    .foregroundColor(.black)
+        VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
+                Text("원하는 급식이 있나요?")
                     .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 27))
-                Spacer()
+                
+                Text("신문고에 공유해요")
+                    .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 27))
             }
-            .padding(.top, UIFrame.height*0.0738)
-            .padding(.horizontal, 25)
+            .padding(.top, UIFrame.height * 0.0738)
+            .padding(.horizontal, 20)
             
-            VStack(spacing: 40) {
-                VStack(spacing: 30){
-                    AuthTextField(title: "아이디", input: $viewModel.id)
-                    AuthTextField(title: "비밀번호", input: $viewModel.password)
+            VStack(spacing: 20) {
+                VStack(alignment: .leading) {
+                    Text("아이디")
+                    TextField("아이디를 입력해주세요.", text: $viewModel.id)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                                .foregroundColor(.accentColor)
+                        )
                 }
-                .padding(.horizontal, 24)
+                
+                VStack(alignment: .leading) {
+                    Text("비밀번호")
+                    SecureField("비밀번호를 입력해주세요.", text: $viewModel.password)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                                .foregroundColor(.accentColor)
+                        )
+                }
+                
+                Spacer()
                 
                 Button {
                     viewModel.apply(.signInButtonDidTap)
                 } label: {
                     Text("로그인")
-                        .frame(width: UIFrame.width - 48, height: 62)
-                        .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                        .padding()
+                        .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .background(
+                            Rectangle()
+                        )
                 }
+                .cornerRadius(8)
             }
-            .padding(.top, UIFrame.height*0.0738)
-            
-            
-
-            Spacer()
+            .padding(.top, UIFrame.height * 0.0738)
         }
+        .padding()
         .navigate(to: ContentView(), when: $viewModel.isSuccess)
         .configureBackbutton(mode: mode)
         .onChange(of: viewModel.isSuccess, perform: { newValue in

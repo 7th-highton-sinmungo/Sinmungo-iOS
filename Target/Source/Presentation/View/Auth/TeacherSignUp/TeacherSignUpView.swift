@@ -17,45 +17,86 @@ struct TeacherSignUpView: View {
     
     var body: some View {
         VStack {
-            
-            Button {
-                imagePickerPresenting.toggle()
-            } label: {
-                VStack {
-                    Image(uiImage: viewModel.profileImage.count <= 0 ? .init() : viewModel.profileImage[0].image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 82, height: 82)
-                        .background(.gray)
-                    .clipShape(Circle())
-                    Text("프로필 사진")
-                        .foregroundColor(Color(UIColor.systemBlue))
-                        .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 15))
+            VStack(spacing: 15) {
+                Button {
+                    imagePickerPresenting.toggle()
+                } label: {
+                    VStack {
+                        if viewModel.profileImage.count <= 0 {
+                            VStack {
+                                Image(systemName: "camera")
+                                    .foregroundColor(Color(.systemGray3))
+                            }
+                            .frame(width: 80, height: 80, alignment: .center)
+                            .background(
+                                Circle()
+                                    .stroke()
+                            )
+                        }
+                        else {
+                            Image(uiImage: viewModel.profileImage[0].image)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                                .frame(width: 80, height: 80, alignment: .center)
+                        }
+                        
+                        Text("프로필 사진")
+                            .foregroundColor(Color(UIColor.systemBlue))
+                            .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 15))
+                    }
                 }
-               
-            }
-            
-            VStack(spacing: 40) {
-                VStack(spacing: 30) {
-                    AuthTextField(title: "이름", input: $viewModel.name)
-                    AuthTextField(title: "아이디", input: $viewModel.id)
-                    AuthTextField(title: "비밀번호", input: $viewModel.password)
+                
+                VStack(alignment: .leading) {
+                    Text("이름")
+                    TextField("이름을 입력해주세요.", text: $viewModel.name)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                                .foregroundColor(.accentColor)
+                        )
                 }
-                .padding(.horizontal, 24)
+                
+                VStack(alignment: .leading) {
+                    Text("아이디")
+                    TextField("아이디를 입력해주세요.", text: $viewModel.id)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                                .foregroundColor(.accentColor)
+                        )
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("비밀번호")
+                    SecureField("비밀번호 입력해주세요.", text: $viewModel.password)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                                .foregroundColor(.accentColor)
+                        )
+                }
+                
+                Spacer()
                 
                 Button {
                     viewModel.apply(.signUpButtonDidTap)
                 } label: {
                     Text("회원가입")
-                        .frame(width: UIFrame.width - 48, height: 62)
-                        .background(Color(SinmungoAsset.Assets.sinmungoMain.color))
+                        .padding()
+                        .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .background(
+                            Rectangle()
+                        )
                 }
+                .cornerRadius(8)
             }
-            .padding(.top, UIFrame.height*0.1)
-            
-            
+            .padding()
+            .padding(.top, 20)
 
         }
         .navigate(to: ContentView(), when: $viewModel.isSuccess)
