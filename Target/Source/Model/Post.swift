@@ -11,7 +11,7 @@ import Foundation
 struct Post: Codable, Hashable {
     var index: Int
     var content: String
-    var createdAt: Date
+    var createdAt: String
     var images: [String]
     var likeCount: Int
     var isLike: Bool
@@ -28,7 +28,7 @@ struct Post: Codable, Hashable {
     }
     
     // Codable
-    enum PostKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case index = "index"
         case content = "content"
         case createdAt = "created_at"
@@ -40,7 +40,7 @@ struct Post: Codable, Hashable {
     }
     
     // General
-    internal init(index: Int, content: String, createdAt: Date, images: [String], likeCount: Int, isLike: Bool, isChosen: Bool, isMine: Bool) {
+    internal init(index: Int, content: String, createdAt: String, images: [String], likeCount: Int, isLike: Bool, isChosen: Bool, isMine: Bool) {
         self.index = index
         self.content = content
         self.createdAt = createdAt

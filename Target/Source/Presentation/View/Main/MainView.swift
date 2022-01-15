@@ -17,12 +17,38 @@ struct MainView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Spacer()
-                        SortButton(searchType: $viewModel.searchType)
+                        Menu {
+                            Button {
+                                viewModel.searchType = SearchType.POPULAR
+                                viewModel.fetchPosts()
+                            } label: {
+                                Image(systemName: "heart")
+                                Text("좋아요순")
+                            }
+                            
+                            Button {
+                                viewModel.searchType = SearchType.RECENT
+                                viewModel.fetchPosts()
+                            } label: {
+                                Image(systemName: "arrow.up.arrow.down")
+                                Text("최신순")
+                            }
+                        } label: {
+                            if viewModel.searchType == SearchType.POPULAR {
+                                Image(systemName: "heart")
+                                Text("좋아요순")
+                            }
+                            else {
+                                Image(systemName: "arrow.up.arrow.down")
+                                Text("최신순")
+                            }
+                        }
                     }
                     .padding(.horizontal)
                     
                     ForEach(viewModel.posts, id: \.self) { post in
                         PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
+                            .padding(.bottom)
                     }
                 }
                 .padding()

@@ -21,7 +21,14 @@ struct PostView: View {
     
     var onDeletePost: (Int) -> Void
     
-    private let formatter = { () -> DateFormatter in
+    private let stringFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return formatter
+    }()
+    
+    private let dateFormatter = { () -> DateFormatter in
         let formatter = DateFormatter()
         formatter.dateFormat = "y년 M월 d일"
         
@@ -59,7 +66,7 @@ struct PostView: View {
                     }
                     
                     HStack {
-                        Text(formatter.string(from: post.createdAt))
+                        Text(dateFormatter.string(from: stringFormatter.date(from: post.createdAt) ?? Date()))
                             .foregroundColor(.secondary)
                         
                         Spacer()
@@ -113,6 +120,6 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(post: Post(index: 0, content: "", createdAt: Date(), images: [""], likeCount: 0, isLike: true, isChosen: false, isMine: false), onApplyChoose: {_ in }, onDeleteChoose: { _ in }, onApplyLike: {_ in }, onDeleteLike: {_ in}, onDeletePost: {_ in})
+        PostView(post: Post(index: 0, content: "", createdAt: "", images: [""], likeCount: 0, isLike: true, isChosen: false, isMine: false), onApplyChoose: {_ in }, onDeleteChoose: { _ in }, onApplyLike: {_ in }, onDeleteLike: {_ in}, onDeletePost: {_ in})
     }
 }

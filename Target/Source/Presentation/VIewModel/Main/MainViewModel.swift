@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MainViewModel: BaseViewModel {
     @Published var posts: [Post] = []
@@ -19,9 +20,12 @@ class MainViewModel: BaseViewModel {
         fetchPosts()
     }
     
-    func fetchPosts() {
+    func fetchPosts(control: UIRefreshControl? = nil) {
         addCancellable(userRemote.getSortedPosts(searchType.rawValue)) { [weak self] posts in
             self?.posts = posts
+            if let control = control {
+                control.endRefreshing()
+            }
         }
     }
     
@@ -44,12 +48,14 @@ class MainViewModel: BaseViewModel {
     func onApplyLike(index: Int) {
         addCancellable(likeRemote.postLike(index)) { [weak self] _ in
             self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isLike = true
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].likeCount += 1
         }
     }
     
     func onDeleteLike(index: Int) {
         addCancellable(likeRemote.deleteLike(index)) { [weak self] _ in
             self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].isLike = false
+            self?.posts[(self?.posts.map({$0.index}).firstIndex(of: index)!)!].likeCount -= 1
         }
     }
     
