@@ -28,16 +28,22 @@ struct MainView: View {
                 .padding()
             }
             .navigationBarItems(
-                trailing:
-                    NavigationLink(
-                        destination: {
-                            CreatePostView()
-                        }, label: {
-                            Image(systemName: "plus")
-                        }
-                    )
-                )
+                trailing: VStack {
+                    if UserTypeController.getInstance().getUserType() == UserType.STUDENT {
+                        NavigationLink(
+                            destination: {
+                                CreatePostView()
+                            }, label: {
+                                Image(systemName: "plus")
+                            }
+                        )
+                    }
+                }
+            )
             .navigationTitle("Menu")
+            .refreshable {
+                viewModel.fetchPosts()
+            }
         }
     }
 }
