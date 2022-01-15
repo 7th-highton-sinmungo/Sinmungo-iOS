@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct UserView: View {
+    @Binding var isLogin: Bool
     @StateObject var viewModel = UserViewModel()
     
     var body: some View {
@@ -44,12 +45,13 @@ struct UserView: View {
             .navigationBarItems(trailing: Menu(content: {
                 Button(action: {
                     TokenController.getInstance().logout()
+                    isLogin = false
                 }, label: {
                     Text("로그아웃")
                     Image("rectangle.portrait.and.arrow.right")
                 })
             }, label: {
-                Image("gear")
+                Image(systemName: "gearshape")
             }))
         }
     }
@@ -57,6 +59,6 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        UserView(isLogin: .constant(false))
     }
 }

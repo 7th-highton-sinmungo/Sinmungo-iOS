@@ -12,31 +12,38 @@ struct ContentView: View {
     @State var selection = 0
     
     var body: some View {
-        if !isLogin {
-            OnboardingView(isLogin: $isLogin)
-        }
-        else {
-            TabView(selection: $selection) {
-                MainView()
-                    .tabItem {
-                        Image(systemName: "house")
-                        Text("홈")
+        ZStack {
+            if !isLogin {
+                OnboardingView(isLogin: $isLogin)
+                    .onAppear {
+                        selection = 0
                     }
-                    .tag(0)
-                
-                MonthlyChosenPostView()
-                    .tabItem {
-                        Image(systemName: "calendar")
-                        Text("월별 조회")
-                    }
-                    .tag(1)
-                
-                UserView()
-                    .tabItem {
-                        Image(systemName: "person")
-                        Text("내 정보")
-                    }
-                    .tag(2)
+                    .zIndex(0)
+            }
+            else {
+                TabView(selection: $selection) {
+                    MainView()
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("홈")
+                        }
+                        .tag(0)
+                    
+                    MonthlyChosenPostView()
+                        .tabItem {
+                            Image(systemName: "calendar")
+                            Text("월별 조회")
+                        }
+                        .tag(1)
+                    
+                    UserView(isLogin: $isLogin)
+                        .tabItem {
+                            Image(systemName: "person")
+                            Text("내 정보")
+                        }
+                        .tag(2)
+                }
+                .zIndex(1)
             }
         }
     }
