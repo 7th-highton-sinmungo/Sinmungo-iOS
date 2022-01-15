@@ -33,7 +33,6 @@ struct SignInView: View {
                 
                 Button {
                     viewModel.apply(.signInButtonDidTap)
-                    isLogin = true
                 } label: {
                     Text("로그인")
                         .frame(width: UIFrame.width - 48, height: 62)
@@ -50,6 +49,9 @@ struct SignInView: View {
         }
         .navigate(to: ContentView(), when: $viewModel.isSuccess)
         .configureBackbutton(mode: mode)
+        .onChange(of: viewModel.isSuccess, perform: { newValue in
+            isLogin = newValue
+        })
         .onDisappear(perform: {
             viewModel.reset()
         })

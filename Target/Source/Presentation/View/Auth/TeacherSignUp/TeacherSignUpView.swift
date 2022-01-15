@@ -67,6 +67,9 @@ struct TeacherSignUpView: View {
         .onDisappear(perform: {
             viewModel.reset()
         })
+        .onChange(of: viewModel.isSuccess, perform: { newValue in
+            isLogin = newValue
+        })
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("교사 회원가입")
         .onChange(of: viewModel.profileImage) { value in

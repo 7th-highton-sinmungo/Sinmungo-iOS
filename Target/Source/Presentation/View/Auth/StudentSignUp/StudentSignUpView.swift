@@ -54,7 +54,6 @@ struct StudentSignUpView: View {
                 
                 Button {
                     viewModel.apply(.signUpButtonDidTap)
-                    isLogin = true
                 } label: {
                     Text("회원가입")
                         .frame(width: UIFrame.width - 48, height: 62)
@@ -75,6 +74,9 @@ struct StudentSignUpView: View {
         .configureBackbutton(mode: mode)
         .onDisappear(perform: {
             viewModel.reset()
+        })
+        .onChange(of: viewModel.isSuccess, perform: { newValue in
+            isLogin = newValue
         })
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("학생 회원가입")
