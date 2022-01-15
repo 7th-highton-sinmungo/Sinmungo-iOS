@@ -12,5 +12,12 @@ class TeacherRegisterRequest: Codable {
     var id: String
     var password: String
     var name: String
-    var profile_image_url: String
+    var profileImageUrl: String
+    
+    enum TeacherRegisterRequestKeys: CodingKey, String {
+        case id = "id"
+        case password = "password"
+        case name = "name"
+        case profileImageUrl = "profile_image_url"
+    }
 }
