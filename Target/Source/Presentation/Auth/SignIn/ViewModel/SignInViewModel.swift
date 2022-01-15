@@ -8,7 +8,7 @@
 
 import Combine
 
-final class SignInVM: ObservableObject {
+final class SignInViewModel: ObservableObject {
     // MARK: - Properties
     @Published var id = ""
     @Published var password = ""
@@ -31,9 +31,6 @@ final class SignInVM: ObservableObject {
     enum Input{
         case signInButtonDidTap
     }
-    
-    
-    
     
     func apply(_ input: Input) {
         switch input{

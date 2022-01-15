@@ -11,7 +11,7 @@ import SwiftUI
 struct SignInView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @ObservedObject var viewModel = SignInVM()
+    @ObservedObject var viewModel = SignInViewModel()
     var body: some View {
         VStack {
             
