@@ -40,6 +40,10 @@ final class TeacherSignUpViewModel: BaseViewModel{
     }
     
     private func teacherSignUp(){
+        guard !id.isEmpty, !password.isEmpty, !name.isEmpty else {
+            return
+        }
+        
         addCancellable(imageRemote.postUploadProfileImage([.init(type: .JPEG,
                                                                  name: "",
                                                                  image: profileImage.first?.image ?? .init())]))

@@ -39,6 +39,10 @@ final class SignInViewModel: BaseViewModel {
     }
     
     private func login(){
+        guard !id.isEmpty, !password.isEmpty else {
+            return
+        }
+        
         addCancellable(userRemote.postLogin(.init(id: id, password: password))) { [weak self] _ in
             self?.isSuccess = true
         }

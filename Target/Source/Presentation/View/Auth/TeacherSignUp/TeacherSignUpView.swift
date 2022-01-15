@@ -45,7 +45,6 @@ struct TeacherSignUpView: View {
                 
                 Button {
                     viewModel.apply(.signUpButtonDidTap)
-                    isLogin = true
                 } label: {
                     Text("회원가입")
                         .frame(width: UIFrame.width - 48, height: 62)

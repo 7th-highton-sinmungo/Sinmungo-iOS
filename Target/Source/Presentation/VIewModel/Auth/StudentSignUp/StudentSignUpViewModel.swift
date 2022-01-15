@@ -50,6 +50,10 @@ final class StudentSignUpViewModel: BaseViewModel {
     }
     
     private func studentSignUp(){
+        guard !id.isEmpty, !password.isEmpty, !name.isEmpty else {
+            return
+        }
+        
         addCancellable(imageRemote.postUploadProfileImage([.init(type: .JPEG,
                                                                  name: "",
                                                                  image: profileImage.first?.image ?? .init())]))
