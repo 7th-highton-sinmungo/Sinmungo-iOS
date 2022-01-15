@@ -33,7 +33,7 @@ extension ImageRemote {
             var imgData: Data? = nil
             switch request.type {
                 case .JPEG:
-                imgData = request.image.jpegData(compressionQuality: 0.2)!
+                imgData = request.image.jpegData(compressionQuality: 0.2) ?? Data()
                 case .PNG:
                 imgData = request.image.pngData()
                 default:
