@@ -72,7 +72,7 @@ struct CreatePostView: View {
             Spacer()
             
             Button {
-                
+                viewModel.applyCreatePost()
             } label: {
                 Text("게시하기")
                     .padding()
