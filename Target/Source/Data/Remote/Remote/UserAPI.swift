@@ -9,9 +9,9 @@
 import Moya
 
 enum UserAPI {
-    case postLogin(request: LoginRequest)
+    case postLogin(_ request: LoginRequest)
     case getLikedPosts
-    case getSortedPosts(sort: Int) // 0 - 최신순 / 1 - 좋아요순
+    case getSortedPosts(_ sort: Int) // 0 - 최신순 / 1 - 좋아요순
 }
 
 extension UserAPI: TargetType {

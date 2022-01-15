@@ -9,7 +9,7 @@
 import Moya
 
 enum TeacherAPI {
-    case postRegister(request: TeacherRegisterRequest)
+    case postRegister(_ request: TeacherRegisterRequest)
     case getUserInfo
     case getChosenPosts
 }

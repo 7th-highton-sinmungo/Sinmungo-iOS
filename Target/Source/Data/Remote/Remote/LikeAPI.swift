@@ -9,8 +9,8 @@
 import Moya
 
 enum LikeAPI {
-    case postLike(index: Int)
-    case deleteLike(index: Int)
+    case postLike(_ index: Int)
+    case deleteLike(_ index: Int)
 }
 
 extension LikeAPI: TargetType {
