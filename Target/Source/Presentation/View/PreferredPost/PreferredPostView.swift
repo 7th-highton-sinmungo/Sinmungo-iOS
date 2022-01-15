@@ -13,14 +13,20 @@ struct PreferredPostView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                ForEach(viewModel.posts, id: \.self) { post in
-                    PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
+        List {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ForEach(viewModel.posts, id: \.self) { post in
+                        PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
+                    }
                 }
             }
-            .padding()
+            .listRowSeparator(.hidden)
         }
+        .refreshable {
+            viewModel.fetchPosts()
+        }
+        .listStyle(PlainListStyle())
         .configureBackbutton(mode: mode)
         .navigationTitle("Preferred")
         .navigationBarTitleDisplayMode(.automatic)

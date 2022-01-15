@@ -11,9 +11,16 @@ import Foundation
 final class PreferredPostViewModel: BaseViewModel {
     @Published var posts: [Post] = []
     
+    let userRemote = UserRemote()
     let chooseRemote = ChooseRemote()
     let likeRemote = LikeRemote()
     let postRemote = PostRemote()
+    
+    func fetchPosts() {
+        addCancellable(userRemote.getLikedPosts()) { [weak self] posts in
+            self?.posts = posts
+        }
+    }
     
     func onApplyChoose(index: Int) {
         addCancellable(chooseRemote.postChoose(index)) { [weak self] _ in

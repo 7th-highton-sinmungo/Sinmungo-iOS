@@ -73,9 +73,6 @@ struct MainView: View {
                 }
             )
             .navigationTitle("Menu")
-            .refreshable {
-                viewModel.fetchPosts()
-            }
         }
     }
 }

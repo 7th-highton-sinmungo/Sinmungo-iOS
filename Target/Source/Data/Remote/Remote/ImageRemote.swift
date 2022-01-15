@@ -52,9 +52,13 @@ extension ImageRemote {
                     return nil
             }
             
+            guard let imgData = imgData else {
+                return nil
+            }
+            
             imageData.append(
                 MultipartFormData(
-                    provider: .data(imgData!),
+                    provider: .data(imgData),
                     name: name,
                     fileName: request.name,
                     mimeType: request.type.mimeType
