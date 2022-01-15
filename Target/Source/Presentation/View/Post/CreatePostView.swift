@@ -28,9 +28,14 @@ struct CreatePostView: View {
                     Image(systemName: "exclamationmark.square")
                     Text("이미지를 선택해주세요.")
                 }
-                .foregroundColor(.secondary)
+                .foregroundColor(Color(.systemGray3))
                 .frame(height: 220, alignment: .center)
                 .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke()
+                        .foregroundColor(.accentColor)
+                )
                 .padding(.bottom)
             }
             else {
@@ -40,10 +45,11 @@ struct CreatePostView: View {
                             Image(uiImage: image.image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 300, height: 220, alignment: .center)
+                                .frame(height: 220, alignment: .center)
                                 .overlay(
                                     DeleteButtonOveray(image: image, images: $viewModel.images)
                                 )
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .clipped()
                         }
                         .padding(.trailing, 8)
