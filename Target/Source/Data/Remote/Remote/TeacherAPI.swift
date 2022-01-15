@@ -11,7 +11,6 @@ import Moya
 enum TeacherAPI {
     case postRegister(_ request: TeacherRegisterRequest)
     case getUserInfo
-    case getChosenPosts
 }
 
 extension TeacherAPI: TargetType {
@@ -25,8 +24,6 @@ extension TeacherAPI: TargetType {
             return "/"
         case .getUserInfo:
             return "/info"
-        case .getChosenPosts:
-            return "/post/chosen"
         }
     }
     
@@ -36,8 +33,6 @@ extension TeacherAPI: TargetType {
             return .post
         case .getUserInfo:
             return .get
-        case .getChosenPosts:
-            return .get
         }
     }
     
@@ -46,8 +41,6 @@ extension TeacherAPI: TargetType {
         case let .postRegister(request):
             return .requestData(try! JSONEncoder().encode(request))
         case .getUserInfo:
-            return .requestPlain
-        case .getChosenPosts:
             return .requestPlain
         }
     }
