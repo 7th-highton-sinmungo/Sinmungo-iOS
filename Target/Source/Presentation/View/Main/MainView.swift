@@ -58,7 +58,7 @@ struct SortButton: View {
             }
         } label: {
             if searchType == SearchType.POPULAR {
-                Image(systemName: "slider.horizontal.3")
+                Image(systemName: "heart")
                 Text("좋아요순")
             }
             else {

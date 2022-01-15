@@ -21,7 +21,7 @@ struct PostView: View {
     var body: some View {
         VStack(spacing: 0) {
             ImageView(images: post.images)
-                .frame(height: 230)
+                .frame(height: 210)
             
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
@@ -34,6 +34,8 @@ struct PostView: View {
                     } label: {
                         post.isLike ? Image(systemName: "heart.fill") : Image(systemName: "heart")
                     }
+                    
+                    Text("\(post.likeCount)")
                 }
                 
                 Text(formatter.string(from: post.createdAt))
