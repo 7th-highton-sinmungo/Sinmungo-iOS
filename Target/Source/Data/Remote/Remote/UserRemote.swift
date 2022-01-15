@@ -34,8 +34,8 @@ class UserRemote: BaseRemote<UserAPI> {
             .eraseToAnyPublisher()
     }
     
-    func getChosenPosts() -> AnyPublisher<[Post], Error> {
-        return self.request(.getChosenPosts)
+    func getChosenPosts(_ month: String) -> AnyPublisher<[Post], Error> {
+        return self.request(.getChosenPosts(month))
             .map(PostResponse.self, using: decoder)
             .map { $0.postList }
             .eraseToAnyPublisher()

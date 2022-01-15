@@ -48,6 +48,9 @@ struct MonthlyChosenPostView: View {
                     
                 }
             }
+            .onAppear(perform: {
+                viewModel.onApplyChosenPost()
+            })
             .navigationTitle("\(viewModel.selectedDate.getMonth())월")
             .navigationBarTitleDisplayMode(.automatic)
         }

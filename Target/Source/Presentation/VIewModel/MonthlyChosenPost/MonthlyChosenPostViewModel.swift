@@ -30,14 +30,25 @@ final class MonthlyChosenPostViewModel: BaseViewModel {
         switch input{
         case .plusDidTap:
             selectedDate.addTimeInterval(month)
+            onApplyChosenPost()
         case .minusDidTap:
             selectedDate.addTimeInterval(-month)
+            onApplyChosenPost()
         }
     }
     
     let chooseRemote = ChooseRemote()
     let likeRemote = LikeRemote()
     let postRemote = PostRemote()
+    let userRemote = UserRemote()
+    
+    func onApplyChosenPost() {
+        addCancellable(userRemote.getChosenPosts(selectedDate.getMonth().toMonth)) { [weak self] post in
+            self?.posts = post
+            print(post)
+        } 
+
+    }
     
     func onApplyChoose(index: Int) {
         addCancellable(chooseRemote.postChoose(index)) { [weak self] _ in

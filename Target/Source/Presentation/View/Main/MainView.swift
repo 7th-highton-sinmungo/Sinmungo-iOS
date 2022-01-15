@@ -74,6 +74,9 @@ struct MainView: View {
             )
             .navigationTitle("Menu")
         }
+        .onAppear {
+            viewModel.fetchPosts()
+        }
     }
 }
 
