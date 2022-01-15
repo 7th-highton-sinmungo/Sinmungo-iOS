@@ -14,7 +14,7 @@ class BaseRemote<T: TargetType> {
     let decoder = JSONDecoder()
     
     func request(_ target: MoyaProvider<T>.Target, callbackQueue: DispatchQueue? = nil) -> AnyPublisher<Moya.Response, Error> {
-        if(!NetworkReachabilityManager(host: Constant.HOST)!.isReachable) {
+        if(!NetworkReachabilityManager(host: Constants.DEFAULT_HOST)!.isReachable) {
             return Future<Moya.Response, Error> { result in
                 result(.failure(SinmungoError.error(message: "서버에 접속할 수 없습니다.")))
             }

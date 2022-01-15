@@ -1,5 +1,5 @@
 //
-//  Constant.swift
+//  Constants.swift
 //  Sinmungo
 //
 //  Created by 박세은 on 2022/01/15.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Constant {
-    static var HOST = ""
+class Constants {
+    static var DEFAULT_HOST = ""
 }
