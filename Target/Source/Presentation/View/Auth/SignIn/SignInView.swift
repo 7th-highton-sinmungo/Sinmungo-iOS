@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @ObservedObject var viewModel = SignInViewModel()
     var body: some View {
@@ -47,6 +47,13 @@ struct SignInView: View {
 
             Spacer()
         }
+        .navigationBarItems(leading: Button(action: {
+            mode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.black)
+        }))
+        .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("로그인")
         

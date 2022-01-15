@@ -21,11 +21,13 @@ struct AuthTextField: View {
             }
             .padding(.bottom, 5)
             TextField("\(title)를 입력해주세요.", text: $input)
+                .padding(.horizontal, 5)
                 .overlay {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.black, lineWidth: 1)
                         .frame(height: 40)
                 }
+            
                 
         }
     }
