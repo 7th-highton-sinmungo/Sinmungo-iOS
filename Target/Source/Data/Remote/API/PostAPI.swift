@@ -16,7 +16,7 @@ enum PostAPI{
 
 extension PostAPI: TargetType{
     var baseURL: URL {
-        return URL(string: Constants.DEFAULT_HOST + "/post")!
+        return URL(string: Constants.DEFAULT_HOST + "post")!
     }
     
     var path: String {
