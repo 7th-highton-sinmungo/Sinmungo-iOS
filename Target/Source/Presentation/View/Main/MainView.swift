@@ -19,6 +19,7 @@ struct MainView: View {
                         Spacer()
                         SortButton(searchType: $viewModel.searchType)
                     }
+                    .padding(.horizontal)
                     
                     ForEach(viewModel.posts, id: \.self) { post in
                         PostView(post: post)
