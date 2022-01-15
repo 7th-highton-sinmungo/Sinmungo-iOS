@@ -9,9 +9,10 @@
 import Moya
 
 enum PostAPI{
-    case postCreatePost(PostRequest)
-    case postUpdatePost(PostRequest, Int)
-    case postDeletePost(Int)
+    case postCreatePost(_ request: PostRequest)
+    case postUpdatePost(_ request: PostRequest, _ index: Int)
+    case postDeletePost(_ index: Int)
+    case getChosenPosts
 }
 
 extension PostAPI: TargetType{
@@ -26,7 +27,9 @@ extension PostAPI: TargetType{
         case let .postUpdatePost(_, index):
             return "/\(index)"
         case let .postDeletePost(index):
-            return "g/\(index)"
+            return "/\(index)"
+        case .getChosenPosts:
+            return "/post/chosen"
         }
     }
     
@@ -38,22 +41,20 @@ extension PostAPI: TargetType{
             return .patch
         case .postDeletePost:
             return .delete
+        case .getChosenPosts:
+            return .get
         }
     }
     
     var task: Task {
         switch self{
-        case let .postCreatePost(req):
-            return .requestParameters(parameters: [
-                "content" : req.content,
-                "images" : req.images
-            ], encoding: JSONEncoding.default)
-        case let .postUpdatePost(req, _):
-            return .requestParameters(parameters: [
-                "content" : req.content,
-                "images" : req.images
-            ], encoding: JSONEncoding.default)
+        case let .postCreatePost(request):
+            return .requestData(try! JSONEncoder().encode(request))
+        case let .postUpdatePost(request, _):
+            return .requestData(try! JSONEncoder().encode(request))
         case .postDeletePost:
+            return .requestPlain
+        case .getChosenPosts:
             return .requestPlain
         }
     }
