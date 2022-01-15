@@ -12,7 +12,6 @@ enum PostAPI{
     case postCreatePost(_ request: PostRequest)
     case postUpdatePost(_ request: PostRequest, _ index: Int)
     case postDeletePost(_ index: Int)
-    case getChosenPosts
 }
 
 extension PostAPI: TargetType{
@@ -28,8 +27,6 @@ extension PostAPI: TargetType{
             return "/\(index)"
         case let .postDeletePost(index):
             return "/\(index)"
-        case .getChosenPosts:
-            return "/post/chosen"
         }
     }
     
@@ -41,8 +38,6 @@ extension PostAPI: TargetType{
             return .patch
         case .postDeletePost:
             return .delete
-        case .getChosenPosts:
-            return .get
         }
     }
     
@@ -53,8 +48,6 @@ extension PostAPI: TargetType{
         case let .postUpdatePost(request, _):
             return .requestData(try! JSONEncoder().encode(request))
         case .postDeletePost:
-            return .requestPlain
-        case .getChosenPosts:
             return .requestPlain
         }
     }

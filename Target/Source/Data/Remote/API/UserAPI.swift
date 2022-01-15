@@ -12,6 +12,7 @@ enum UserAPI {
     case postLogin(_ request: LoginRequest)
     case getLikedPosts
     case getSortedPosts(_ sort: Int) // 0 - 최신순 / 1 - 좋아요순
+    case getChosenPosts
 }
 
 extension UserAPI: TargetType {
@@ -27,6 +28,8 @@ extension UserAPI: TargetType {
             return "/post/liked"
         case .getSortedPosts:
             return "/post"
+        case .getChosenPosts:
+            return "/post/chosen"
         }
     }
     
@@ -37,6 +40,8 @@ extension UserAPI: TargetType {
         case .getLikedPosts:
             return .get
         case .getSortedPosts:
+            return .get
+        case .getChosenPosts:
             return .get
         }
     }
@@ -49,6 +54,8 @@ extension UserAPI: TargetType {
             return .requestPlain
         case let .getSortedPosts(sort):
             return .requestParameters(parameters: ["sort": sort], encoding: URLEncoding.queryString)
+        case .getChosenPosts:
+            return .requestPlain
         }
     }
     
