@@ -15,7 +15,7 @@ final class PostRemote: BaseRemote<PostAPI>{
             .eraseToAnyPublisher()
     }
     
-    func postUpdatePost(_ req: PostRequest, index: Int) -> AnyPublisher<String, Error>{
+    func patchUpdatePost(_ req: PostRequest, index: Int) -> AnyPublisher<String, Error>{
         return self.request(.patchUpdatePost(req, index))
             .map { _ in "게시글 수정에 성공하였습니다." }
             .eraseToAnyPublisher()
