@@ -72,7 +72,7 @@ struct CreatePostView: View {
             Spacer()
             
             Button {
-                
+                viewModel.applyCreatePost()
             } label: {
                 Text("게시하기")
                     .padding()
@@ -85,9 +85,13 @@ struct CreatePostView: View {
         }
         .configureBackbutton(mode: mode)
         .padding()
+        .onChange(of: viewModel.isSuccess, perform: { _ in
+            mode.wrappedValue.dismiss()
+        })
         .sheet(isPresented: $isActiveImagePicker) {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.images)
         }
+        
         .navigationTitle("게시물 작성")
         .navigationBarTitleDisplayMode(.inline)
     }
