@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Post: Codable, Hashable {
+struct Post: Codable, Hashable {
     var index: Int;
     var content: String;
     var createdAt: Date
