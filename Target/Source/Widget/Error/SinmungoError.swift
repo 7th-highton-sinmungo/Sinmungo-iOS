@@ -9,11 +9,5 @@
 import Foundation
 
 enum SinmungoError: Error {
-    case error(message: String, type: ErrorType = .basic, errorBody: Dictionary<String, Any> = Dictionary())
-}
-
-enum ErrorType: String {
-    case basic = "BASIC"
-    case selfIsNil = "SELF_IS_NIL"
-    case unhandled = "UNHANDLED"
+    case error(message: String = "에러가 발생했습니다.", errorBody: Dictionary<String, Any> = Dictionary())
 }
