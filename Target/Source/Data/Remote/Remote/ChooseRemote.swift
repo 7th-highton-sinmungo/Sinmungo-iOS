@@ -10,13 +10,13 @@ import Combine
 
 class ChooseRemote: BaseRemote<ChooseAPI> {
     func postChoose(_ index: Int) -> AnyPublisher<String, Error> {
-        return self.request(.postChoose(index))
+        return self.request(.postChoose(index+1))
             .map { _ in "채택에 성공했습니다." }
             .eraseToAnyPublisher()
     }
     
     func deleteChoose(_ index: Int) -> AnyPublisher<String, Error> {
-        return self.request(.deleteChoose(index))
+        return self.request(.deleteChoose(index+1))
             .map { _ in "채택에 실패했습니다." }
             .eraseToAnyPublisher()
     }
