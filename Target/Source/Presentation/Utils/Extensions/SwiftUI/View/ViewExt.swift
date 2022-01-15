@@ -9,12 +9,24 @@
 import SwiftUI
 
 extension View{
+    
+    
     func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>, isDetailLink: Bool = false) -> some View {
-            self.background(
-                NavigationLink(isActive: binding, destination: { view }) {
-                    EmptyView()
-                }
+        self.background(
+            NavigationLink(isActive: binding, destination: { view }) {
+                EmptyView()
+            }
                 .isDetailLink(isDetailLink)
-            )
-        }
+        )
+    }
+    func configureBackbutton(mode: Binding<PresentationMode>) -> some View {
+        self.navigationBarItems(leading: Button(action: {
+            mode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.black)
+        }))
+            .navigationBarBackButtonHidden(true)
+        
+    }
 }
