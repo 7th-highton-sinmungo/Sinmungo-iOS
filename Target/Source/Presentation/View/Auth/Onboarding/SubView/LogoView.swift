@@ -11,11 +11,10 @@ import SwiftUI
 struct LogoView: View {
     var body: some View {
         HStack {
-            Image(systemName: "person")
+            Image(uiImage: SinmungoAsset.Assets.sinmungoLogo.image)
                 .resizable()
-                .frame(maxWidth: 62, maxHeight: 62)
-            Text("앱 이름")
-                .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 27))
+                .frame(width: 183, height: 70)
+            
         }
     }
 }

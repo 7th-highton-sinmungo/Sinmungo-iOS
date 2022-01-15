@@ -16,7 +16,7 @@ struct SignInView: View {
         VStack {
             
             HStack {
-                Text("안녕하세요\n앱이름 입니다.")
+                Text("안녕하세요\n급식신문고 입니다.")
                     .foregroundColor(.black)
                     .font(.custom(SinmungoFontFamily.Roboto.regular.name, size: 27))
                 Spacer()
