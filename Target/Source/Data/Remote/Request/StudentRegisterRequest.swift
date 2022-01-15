@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StudentRegisterRequest: Codable {
+struct StudentRegisterRequest: Codable {
     var id: String
     var password: String
     var name: String

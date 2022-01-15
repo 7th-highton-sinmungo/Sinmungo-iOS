@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UploadRequest: Hashable {
+struct UploadRequest: Hashable {
     var type: ImageType
     var name: String
     var image: UIImage

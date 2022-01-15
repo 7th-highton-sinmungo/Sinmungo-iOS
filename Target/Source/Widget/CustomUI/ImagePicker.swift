@@ -34,7 +34,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             for result in results {
-                let request = UploadRequest()
+                var request = UploadRequest()
                 
                 let provider = result.itemProvider
                 provider.loadFileRepresentation(forTypeIdentifier: "public.item") { url, error in
