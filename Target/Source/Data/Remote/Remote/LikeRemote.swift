@@ -9,14 +9,14 @@
 import Combine
 
 class LikeRemote: BaseRemote<LikeAPI> {
-    func postLike(_ index: Int) -> AnyPublisher<String, Error> {
-        return self.request(.postLike(index))
+    func postLike(_ index: Int ) -> AnyPublisher<String, Error> {
+        return self.request(.postLike(index+1))
             .map { _ in "좋아요에 성공했습니다." }
             .eraseToAnyPublisher()
     }
     
     func deleteLike(_ index: Int) -> AnyPublisher<String, Error> {
-        return self.request(.deleteLike(index))
+        return self.request(.deleteLike(index+1))
             .map { _ in "좋아요에 실패했습니다." }
             .eraseToAnyPublisher()
     }

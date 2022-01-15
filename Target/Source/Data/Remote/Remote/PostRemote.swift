@@ -16,13 +16,13 @@ final class PostRemote: BaseRemote<PostAPI>{
     }
     
     func patchUpdatePost(_ req: PostRequest, index: Int) -> AnyPublisher<String, Error>{
-        return self.request(.patchUpdatePost(req, index))
+        return self.request(.patchUpdatePost(req, index+1))
             .map { _ in "게시글 수정에 성공하였습니다." }
             .eraseToAnyPublisher()
     }
     
     func deletePost(index: Int) -> AnyPublisher<String, Error> {
-        return self.request(.deletePost(index))
+        return self.request(.deletePost(index+1))
             .map { _ in "게시글 삭제에 성공하였습니다." }
             .eraseToAnyPublisher()
     }

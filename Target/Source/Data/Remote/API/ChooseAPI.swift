@@ -50,7 +50,7 @@ extension ChooseAPI: TargetType {
     }
     
     var headers: [String : String]? {
-        var headers = ["Content-Type": "multipart/form-data"]
+        var headers = ["Content-Type": "application/json"]
         headers["authorization"] = "Bearer \(TokenController.getInstance().getToken())"
         
         return headers
