@@ -60,17 +60,11 @@ struct TeacherSignUpView: View {
         .sheet(isPresented: $imagePickerPresenting, content: {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.profileImage)
         })
-        .navigationBarItems(leading: Button(action: {
-            mode.wrappedValue.dismiss()
-        }, label: {
-            Image(systemName: "chevron.left")
-                .foregroundColor(.black)
-        }))
+        .configureBackbutton(mode: mode)
         .onDisappear(perform: {
             viewModel.reset()
         })
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .navigationTitle("교사 회원가입")
         .onChange(of: viewModel.profileImage) { value in
             print(value)

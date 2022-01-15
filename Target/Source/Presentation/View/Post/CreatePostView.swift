@@ -11,7 +11,7 @@ import PhotosUI
 
 struct CreatePostView: View {
     @StateObject var viewModel = CreatePostViewModel()
-    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State var isActiveImagePicker = false
     
     var body: some View {
@@ -71,6 +71,7 @@ struct CreatePostView: View {
                     )
             }
         }
+        .configureBackbutton(mode: mode)
         .padding()
         .sheet(isPresented: $isActiveImagePicker) {
             ImagePicker(configuration: getConfiguration(), requests: $viewModel.images)

@@ -32,7 +32,7 @@ struct UserView: View {
                     .padding()
                     
                     NavigationLink(destination: {
-                        Text("")
+                        MyPostsView()
                     }, label: {
                         Text("내가 작성한 게시물 보기")
                     })
