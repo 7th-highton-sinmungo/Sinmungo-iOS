@@ -54,21 +54,23 @@ final class StudentSignUpViewModel: BaseViewModel {
             return
         }
         
-        addCancellable(imageRemote.postUploadProfileImage([.init(type: .JPEG,
-                                                                 name: "",
-                                                                 image: profileImage.first?.image ?? .init())]))
-        { [weak self] url in
-            self?.addCancellable(self!.studentRemote.postLogin(.init(id: self?.id ?? "",
-                                                         password: self?.password ?? "",
-                                                         name: self?.name ?? "",
-                                                         grade: self?.grade ?? 1,
-                                                         classNum: self?.class ?? 1,
-                                                         number: self?.number ?? 1,
-                                                                     profileImageUrl: url)), onReceiveValue: { _ in
+        addCancellable(imageRemote.postUploadProfileImage(profileImage)) { [weak self] url in
+            self?.addCancellable(
+                self!.studentRemote.postRegister(
+                    StudentRegisterRequest(
+                        id: self?.id ?? "",
+                        password: self?.password ?? "",
+                        name: self?.name ?? "",
+                        grade: "\(self?.grade ?? 1)",
+                        classNum: "\(self?.class ?? 1)",
+                        number: "\(self?.number ?? 1)",
+                        profileImageUrl: url
+                    )
+                )
+            ) { _ in
                 self?.isSuccess = true
-            })
+            }
         }
-
     }
     
 }

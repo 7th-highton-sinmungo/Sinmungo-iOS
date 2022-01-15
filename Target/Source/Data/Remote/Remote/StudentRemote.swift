@@ -7,9 +7,12 @@
 //
 
 import Combine
+import Foundation
 
 class StudentRemote: BaseRemote<StudentAPI> {
-    func postLogin(_ request: StudentRegisterRequest) -> AnyPublisher<String, Error> {
+    func postRegister(_ request: StudentRegisterRequest) -> AnyPublisher<String, Error> {
+        print(String(data: try! JSONEncoder().encode(request), encoding: String.Encoding.utf8))
+        
         return self.request(.postRegister(request))
             .map(TokenResponse.self, using: decoder)
             .map { $0.accessToken }
