@@ -15,7 +15,7 @@ enum ImagesAPI {
 
 extension ImagesAPI: TargetType {
     var baseURL: URL {
-        return URL(string: Constants.DEFAULT_HOST + "images")!
+        return URL(string: Constants.DEFAULT_HOST + "image")!
     }
     
     var path: String {
