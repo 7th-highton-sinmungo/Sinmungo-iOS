@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isLogin = false
+    @State var isLogin = !TokenController.getInstance().getToken().isEmpty
     @State var selection = 0
     
     var body: some View {
