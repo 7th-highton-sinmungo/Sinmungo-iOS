@@ -8,8 +8,8 @@
 
 import Combine
 
-protocol TeacherRepository{
+protocol TeacherRepository {
     func applyRegister(req: TeacherRegisterRequest) -> AnyPublisher<TokenResponse, Error>
     
-    func fetchTeacherInfo() -> AnyPublisher<TeacherInfoResponse, Error>
+    func fetchTeacherInfo() -> AnyPublisher<TeacherUser, Error>
 }
