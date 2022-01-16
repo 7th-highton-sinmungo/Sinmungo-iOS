@@ -33,7 +33,7 @@ struct TeacherUser: Codable {
     var profileImageUrl: String
     
     // Codable
-    enum StudentUserKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case name = "name"
         case profileImageUrl = "profile_image_url"
     }

@@ -19,8 +19,10 @@ struct OnboardingView: View {
             VStack(alignment: .center) {
                 Spacer()
                 
-                Text("급식 신문고")
-                    .font(.largeTitle)
+                Image(uiImage: SinmungoAsset.Assets.sinmungoLogo.image)
+                                .resizable()
+                                .frame(width: 183, height: 70)
+                
                 
                 Spacer()
                 

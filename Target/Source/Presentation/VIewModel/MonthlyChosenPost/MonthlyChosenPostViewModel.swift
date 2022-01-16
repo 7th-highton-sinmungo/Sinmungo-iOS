@@ -45,9 +45,7 @@ final class MonthlyChosenPostViewModel: BaseViewModel {
     func onApplyChosenPost() {
         addCancellable(userRemote.getChosenPosts(selectedDate.getMonth().toMonth)) { [weak self] post in
             self?.posts = post
-            print(post)
-        } 
-
+        }
     }
     
     func onApplyChoose(index: Int) {
