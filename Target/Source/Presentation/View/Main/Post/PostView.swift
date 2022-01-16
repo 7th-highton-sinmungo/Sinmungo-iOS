@@ -100,7 +100,7 @@ struct PostView: View {
                     } label: {
                         Image(systemName: "checkmark.square.fill")
                             .font(.title)
-                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemBackground)))
+                            .background(RoundedRectangle(cornerRadius: 6).foregroundColor(Color(.systemBackground)))
                             .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     }
                     .padding()
@@ -111,7 +111,7 @@ struct PostView: View {
                     } label: {
                         Image(systemName: "checkmark.square")
                             .font(.title)
-                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemBackground)))
+                            .background(RoundedRectangle(cornerRadius: 6).foregroundColor(Color(.systemBackground)))
                             .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     }
                     .padding()
