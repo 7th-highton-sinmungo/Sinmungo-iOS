@@ -52,6 +52,7 @@ struct TeacherSignUpView: View {
                     Text("이름")
                     TextField("이름을 입력해주세요.", text: $viewModel.name)
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
@@ -64,6 +65,7 @@ struct TeacherSignUpView: View {
                     Text("아이디")
                     TextField("아이디를 입력해주세요.", text: $viewModel.id)
                         .disableAutocorrection(true)
+                        .autocapitalization(.none)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
