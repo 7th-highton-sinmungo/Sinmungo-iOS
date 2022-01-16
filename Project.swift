@@ -12,10 +12,8 @@ let project = Project(
             platform: .iOS,
             product: .app,
             bundleId: "\(orginazationIden).\(projectName)",
-            deploymentTarget: .iOS(targetVersion: "15.2", devices: [.iphone, .ipad]),
-            infoPlist: .extendingDefault(with: [
-                "UILaunchScreen": [:]
-            ]),
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
+            infoPlist: .file(path: "Target/Support/Info.plist"),
             sources: ["Target/Source/**"],
             resources: ["Target/Resource/**"]
         ),
@@ -24,7 +22,7 @@ let project = Project(
             platform: .iOS,
             product: .unitTests,
             bundleId: "\(orginazationIden).\(projectName)Test",
-            deploymentTarget: .iOS(targetVersion: "15.2", devices: [.iphone, .ipad]),
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: [.iphone, .ipad]),
             infoPlist: .default,
             sources: ["TargetTest/Tests/**"],
             dependencies: [
