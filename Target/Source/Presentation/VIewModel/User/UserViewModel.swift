@@ -29,8 +29,12 @@ class UserViewModel: BaseViewModel {
             }
         }
         else {
+            
             addCancellable(teacherRemote.getUserInfo()) { [weak self] userInfo in
+                print("ASDF")
                 self?.teacherUser = userInfo
+            } onReceiveFailure: { err in
+                print(err.localizedDescription)
             }
             
         }
