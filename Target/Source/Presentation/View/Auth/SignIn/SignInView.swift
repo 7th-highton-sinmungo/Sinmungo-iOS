@@ -29,6 +29,7 @@ struct SignInView: View {
                 VStack(alignment: .leading) {
                     Text("아이디")
                     TextField("아이디를 입력해주세요.", text: $viewModel.id)
+                        .disableAutocorrection(true)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
@@ -40,6 +41,7 @@ struct SignInView: View {
                 VStack(alignment: .leading) {
                     Text("비밀번호")
                     SecureField("비밀번호를 입력해주세요.", text: $viewModel.password)
+                        .disableAutocorrection(true)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
