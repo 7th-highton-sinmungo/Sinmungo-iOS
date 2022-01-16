@@ -44,9 +44,8 @@ struct MonthlyChosenPostView: View {
                             PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
                         }
                     }
-                    .padding()
-                    
                 }
+                .padding(20)
             }
             .onAppear(perform: {
                 viewModel.onApplyChosenPost()
