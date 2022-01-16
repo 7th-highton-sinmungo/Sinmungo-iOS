@@ -37,15 +37,20 @@ struct MainView: View {
                             } label: {
                                 if viewModel.searchType == SearchType.POPULAR {
                                     Image(systemName: "heart")
+                                        .foregroundColor(.primary)
                                     Text("좋아요순")
+                                        .foregroundColor(.primary)
                                 }
                                 else {
                                     Image(systemName: "arrow.up.arrow.down")
+                                        .foregroundColor(.primary)
                                     Text("최신순")
+                                        .foregroundColor(.primary)
                                 }
                             }
                         }
                         .padding(.horizontal)
+                        .padding(.bottom, 5)
                         
                         ForEach(viewModel.posts, id: \.self) { post in
                             PostView(post: post, onApplyChoose: viewModel.onApplyChoose, onDeleteChoose: viewModel.onDeleteChoose, onApplyLike: viewModel.onApplyLike, onDeleteLike: viewModel.onDeleteLike, onDeletePost: viewModel.onDeletePost)
@@ -67,6 +72,7 @@ struct MainView: View {
                                 CreatePostView()
                             }, label: {
                                 Image(systemName: "plus")
+                                    .foregroundColor(.primary)
                             }
                         )
                     }

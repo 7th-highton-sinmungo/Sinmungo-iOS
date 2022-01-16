@@ -58,6 +58,7 @@ struct UserView: View {
                 })
             }, label: {
                 Image(systemName: "gearshape")
+                    .foregroundColor(.primary)
             }))
         }
     }

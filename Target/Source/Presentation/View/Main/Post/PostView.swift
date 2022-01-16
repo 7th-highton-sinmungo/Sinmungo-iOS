@@ -52,6 +52,7 @@ struct PostView: View {
                                 onDeleteLike(post.index)
                             } label: {
                                 Image(systemName: "heart.fill")
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             }
                         }
                         else {
@@ -59,6 +60,7 @@ struct PostView: View {
                                 onApplyLike(post.index)
                             } label: {
                                 Image(systemName: "heart")
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             }
                         }
                         
@@ -81,6 +83,7 @@ struct PostView: View {
                                 }
                             } label: {
                                 Image(systemName: "list.bullet")
+                                    .foregroundColor(.black)
                             }
                         }
                     }
@@ -96,7 +99,9 @@ struct PostView: View {
                         onDeleteChoose(post.index)
                     } label: {
                         Image(systemName: "checkmark.square.fill")
-                            .font(.title2)
+                            .font(.title)
+                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemBackground)))
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     }
                     .padding()
                 }
@@ -105,17 +110,20 @@ struct PostView: View {
                         onApplyChoose(post.index)
                     } label: {
                         Image(systemName: "checkmark.square")
-                            .font(.title2)
+                            .font(.title)
+                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(Color(.systemBackground)))
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     }
                     .padding()
                 }
             }
             else {
                 if post.isChosen {
-                    Image(systemName: "checkmark")
-                        .font(.title2)
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.title)
+                        .background(Circle().foregroundColor(Color(.systemBackground)))
                         .padding()
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                 }
             }
         }

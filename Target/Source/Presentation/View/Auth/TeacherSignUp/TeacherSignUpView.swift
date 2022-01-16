@@ -31,6 +31,7 @@ struct TeacherSignUpView: View {
                             .background(
                                 Circle()
                                     .stroke()
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             )
                         }
                         else {
@@ -54,7 +55,7 @@ struct TeacherSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -65,7 +66,7 @@ struct TeacherSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -76,7 +77,7 @@ struct TeacherSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -91,6 +92,7 @@ struct TeacherSignUpView: View {
                         .foregroundColor(.white)
                         .background(
                             Rectangle()
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 .cornerRadius(8)

@@ -31,6 +31,7 @@ struct StudentSignUpView: View {
                             .background(
                                 Circle()
                                     .stroke()
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             )
                         }
                         else {
@@ -54,7 +55,7 @@ struct StudentSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -78,7 +79,7 @@ struct StudentSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -89,7 +90,7 @@ struct StudentSignUpView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke()
-                                .foregroundColor(.accentColor)
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 
@@ -104,6 +105,7 @@ struct StudentSignUpView: View {
                         .foregroundColor(.white)
                         .background(
                             Rectangle()
+                                .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                         )
                 }
                 .cornerRadius(8)
@@ -165,6 +167,7 @@ struct gradeButton: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke()
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     )
                 
             }
@@ -198,6 +201,7 @@ struct classButton: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke()
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     )
             }
             
@@ -230,6 +234,7 @@ struct numberButton: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke()
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     )
             }
         }

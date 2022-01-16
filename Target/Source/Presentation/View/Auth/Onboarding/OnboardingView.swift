@@ -38,6 +38,7 @@ struct OnboardingView: View {
                             .foregroundColor(.white)
                             .background(
                                 Rectangle()
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             )
                     }
                     .cornerRadius(8)
@@ -51,6 +52,7 @@ struct OnboardingView: View {
                             .foregroundColor(.white)
                             .background(
                                 Rectangle()
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             )
                     }
                     .cornerRadius(8)
@@ -64,6 +66,7 @@ struct OnboardingView: View {
                             .foregroundColor(.white)
                             .background(
                                 Rectangle()
+                                    .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                             )
                     }
                     .cornerRadius(8)

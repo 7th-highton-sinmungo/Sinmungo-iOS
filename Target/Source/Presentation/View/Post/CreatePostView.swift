@@ -20,7 +20,9 @@ struct CreatePostView: View {
                 isActiveImagePicker.toggle()
             } label: {
                 Text("사진 추가하기")
+                    .foregroundColor(.primary)
                 Image(systemName: "chevron.right")
+                    .foregroundColor(.primary)
             }
             
             if viewModel.images.count <= 0 {
@@ -34,7 +36,7 @@ struct CreatePostView: View {
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke()
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                 )
                 .padding(.bottom)
             }
@@ -65,7 +67,7 @@ struct CreatePostView: View {
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke()
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     )
             }
             
@@ -80,6 +82,7 @@ struct CreatePostView: View {
                     .foregroundColor(.white)
                     .background(
                         Rectangle()
+                            .foregroundColor(Color(SinmungoAsset.Assets.sinmungoMain.color))
                     )
             }
             .cornerRadius(5)
@@ -127,6 +130,7 @@ struct DeleteButtonOveray: View {
                 images.remove(at: images.firstIndex(of: image)!)
             } label: {
                 Image(systemName: "xmark")
+                    .foregroundColor(.primary)
                     .padding(5)
                     .background(
                         Circle()

@@ -38,6 +38,7 @@ struct MonthlyChosenPostView: View {
                         }
                     }
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
                     
                     VStack {
                         ForEach(viewModel.posts, id: \.self) { post in
