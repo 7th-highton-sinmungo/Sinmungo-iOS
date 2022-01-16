@@ -25,21 +25,27 @@ struct ContentView: View {
                     MainView()
                         .tabItem {
                             Image(systemName: "house")
+                                .foregroundColor(.primary)
                             Text("홈")
+                                .foregroundColor(.primary)
                         }
                         .tag(0)
                     
                     MonthlyChosenPostView()
                         .tabItem {
                             Image(systemName: "calendar")
+                                .foregroundColor(.primary)
                             Text("월별 조회")
+                                .foregroundColor(.primary)
                         }
                         .tag(1)
                     
                     UserView(isLogin: $isLogin)
                         .tabItem {
                             Image(systemName: "person")
+                                .foregroundColor(.primary)
                             Text("내 정보")
+                                .foregroundColor(.primary)
                         }
                         .tag(2)
                 }

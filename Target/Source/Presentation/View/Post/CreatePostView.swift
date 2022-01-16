@@ -20,9 +20,7 @@ struct CreatePostView: View {
                 isActiveImagePicker.toggle()
             } label: {
                 Text("사진 추가하기")
-                    .foregroundColor(.primary)
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.primary)
             }
             
             if viewModel.images.count <= 0 {
