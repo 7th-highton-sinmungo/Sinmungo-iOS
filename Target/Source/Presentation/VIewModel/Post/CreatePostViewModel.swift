@@ -21,7 +21,7 @@ class CreatePostViewModel: BaseViewModel {
         addCancellable(imageRemote.postUploadPostImages(images)) { [weak self] urls in
             guard let self = self else { return }
             self.addCancellable(self.postRemote.postCreatePost(.init(content: self.menuName, images: urls ))) { _ in
-                self.isSuccess = false
+                self.isSuccess = true
             }
         
         }
